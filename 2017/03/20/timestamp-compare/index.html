@@ -89,29 +89,38 @@
 
 <meta name="description" content="可用的时间戳
 当月第一天
-123strtotime(date(&apos;Y-m-01&apos;, time()));ormktime(0,0,0,date(&apos;m&apos;),1,date(&apos;Y&apos;));//适用于当前月，适用于跨月或跨年
+123strtotime(date(&apos;Y-m-01&apos;, time()));ormktime(0,0,0,date(&apos;m&apos;),1,date(&apos;Y&apos;));
 
 当月最后一天
-123strtotime(date(&apos;Y-m-t&apos;, time()));ormktime(23,59,59,date(&apos;m&apos;),date(&apos;t&apos;),date(&apos;Y&apos;));/">
+123strtotime(date(&apos;Y-m-t&apos;, time()));ormktime(23,59,59,date(&apos;m&apos;),date(&apos;t&apos;),date(&apos;Y&apos;));
+
+前月第一天
+1strtotime">
 <meta property="og:type" content="article">
 <meta property="og:title" content="timestamp_compare">
 <meta property="og:url" content="https://singi2016cn.github.io/2017/03/20/timestamp-compare/index.html">
 <meta property="og:site_name" content="Singi">
 <meta property="og:description" content="可用的时间戳
 当月第一天
-123strtotime(date(&apos;Y-m-01&apos;, time()));ormktime(0,0,0,date(&apos;m&apos;),1,date(&apos;Y&apos;));//适用于当前月，适用于跨月或跨年
+123strtotime(date(&apos;Y-m-01&apos;, time()));ormktime(0,0,0,date(&apos;m&apos;),1,date(&apos;Y&apos;));
 
 当月最后一天
-123strtotime(date(&apos;Y-m-t&apos;, time()));ormktime(23,59,59,date(&apos;m&apos;),date(&apos;t&apos;),date(&apos;Y&apos;));/">
-<meta property="og:updated_time" content="2017-03-20T09:56:21.249Z">
+123strtotime(date(&apos;Y-m-t&apos;, time()));ormktime(23,59,59,date(&apos;m&apos;),date(&apos;t&apos;),date(&apos;Y&apos;));
+
+前月第一天
+1strtotime">
+<meta property="og:updated_time" content="2017-03-20T09:58:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="timestamp_compare">
 <meta name="twitter:description" content="可用的时间戳
 当月第一天
-123strtotime(date(&apos;Y-m-01&apos;, time()));ormktime(0,0,0,date(&apos;m&apos;),1,date(&apos;Y&apos;));//适用于当前月，适用于跨月或跨年
+123strtotime(date(&apos;Y-m-01&apos;, time()));ormktime(0,0,0,date(&apos;m&apos;),1,date(&apos;Y&apos;));
 
 当月最后一天
-123strtotime(date(&apos;Y-m-t&apos;, time()));ormktime(23,59,59,date(&apos;m&apos;),date(&apos;t&apos;),date(&apos;Y&apos;));/">
+123strtotime(date(&apos;Y-m-t&apos;, time()));ormktime(23,59,59,date(&apos;m&apos;),date(&apos;t&apos;),date(&apos;Y&apos;));
+
+前月第一天
+1strtotime">
 
 
 
@@ -360,10 +369,10 @@
       
         <h3 id="可用的时间戳"><a href="#可用的时间戳" class="headerlink" title="可用的时间戳"></a>可用的时间戳</h3><ol>
 <li><p>当月第一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, time()));</div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,date(<span class="string">'m'</span>),<span class="number">1</span>,date(<span class="string">'Y'</span>));<span class="comment">//适用于当前月，适用于跨月或跨年</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, time()));</div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,date(<span class="string">'m'</span>),<span class="number">1</span>,date(<span class="string">'Y'</span>));</div></pre></td></tr></table></figure>
 </li>
 <li><p>当月最后一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, time()));</div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">23</span>,<span class="number">59</span>,<span class="number">59</span>,date(<span class="string">'m'</span>),date(<span class="string">'t'</span>),date(<span class="string">'Y'</span>));<span class="comment">//适用于当前月，适用于跨月或跨年</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, time()));</div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">23</span>,<span class="number">59</span>,<span class="number">59</span>,date(<span class="string">'m'</span>),date(<span class="string">'t'</span>),date(<span class="string">'Y'</span>));</div></pre></td></tr></table></figure>
 </li>
 <li><p>前月第一天</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'-1 month'</span>)));</div></pre></td></tr></table></figure>
