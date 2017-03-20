@@ -61,12 +61,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-execl" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/20/hello-world/" class="article-date">
-  <time datetime="2017-03-20T02:57:49.696Z" itemprop="datePublished">2017-03-20</time>
+    <a href="/2016/10/16/execl/" class="article-date">
+  <time datetime="2016-10-16T09:53:15.000Z" itemprop="datePublished">2016-10-16</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>►<a class="article-category-link" href="/categories/php/thinkphp/">thinkphp</a>►<a class="article-category-link" href="/categories/php/thinkphp/excel/">excel</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -75,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/20/hello-world/">Hello World</a>
+      <a class="article-title" href="/2016/10/16/execl/">execl</a>
     </h1>
   
 
@@ -83,22 +87,539 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="excel"><a href="#excel" class="headerlink" title="excel"></a>excel</h3><h3 id="导入phpexcel"><a href="#导入phpexcel" class="headerlink" title="导入phpexcel"></a>导入phpexcel</h3><h3 id="后台代码"><a href="#后台代码" class="headerlink" title="后台代码"></a>后台代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">$objPHPExcel = <span class="keyword">new</span>\ PHPExcel();</div><div class="line">$orderModel = <span class="keyword">new</span> OrderModel();</div><div class="line">$list = $orderModel - &gt; order(<span class="string">'id'</span>) - &gt; selectByState(<span class="keyword">array</span>(<span class="string">'orderState'</span> =&gt; <span class="number">1</span>)); <span class="comment">//要插入到表格中的数据 </span></div><div class="line"><span class="comment">//表格设置 </span></div><div class="line">$objActSheet = $objPHPExcel-&gt;getActiveSheet(); $objActSheet-&gt;getColumnDimension(<span class="string">'B'</span>)-&gt;setAutoSize(<span class="keyword">true</span>); <span class="comment">//内容自适应 </span></div><div class="line">$objActSheet-&gt;getColumnDimension(<span class="string">'C'</span>)-&gt;setAutoSize(<span class="keyword">true</span>); <span class="comment">//内容自适应 </span></div><div class="line">$objActSheet-&gt;getColumnDimension(<span class="string">'D'</span>)-&gt;setAutoSize(<span class="keyword">true</span>); <span class="comment">//内容自适应 </span></div><div class="line">$objActSheet-&gt;getColumnDimension(<span class="string">'E'</span>)-&gt;setAutoSize(<span class="keyword">true</span>); <span class="comment">//内容自适应 </span></div><div class="line">$objActSheet-&gt;getColumnDimension(<span class="string">'F'</span>)-&gt;setAutoSize(<span class="keyword">true</span>); <span class="comment">//内容自适应 </span></div><div class="line">$objActSheet-&gt;getColumnDimension(<span class="string">'G'</span>)-&gt;setAutoSize(<span class="keyword">true</span>); <span class="comment">//内容自适应 </span></div><div class="line"><span class="comment">//设置行头 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'A'</span> . <span class="number">1</span>, <span class="string">'序列'</span>);<span class="comment">//这里是设置A1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'B'</span> . <span class="number">1</span>, <span class="string">'订单号'</span>);<span class="comment">//这里是设置B1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'C'</span> . <span class="number">1</span>, <span class="string">'粉丝电话号码'</span>);<span class="comment">//这里是设置C1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'D'</span> . <span class="number">1</span>, <span class="string">'粉丝姓名'</span>);<span class="comment">//这里是设置D1单元格的内容</span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'E'</span> . <span class="number">1</span>, <span class="string">'下单时间'</span>);<span class="comment">//这里是设置E1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'F'</span> . <span class="number">1</span>, <span class="string">'商品名称'</span>);<span class="comment">//这里是设置F1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'G'</span> . <span class="number">1</span>, <span class="string">'商品分类名'</span>);<span class="comment">//这里是设置G1单元格的内容</span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'H'</span> . $i, convertUTF8(<span class="string">'商品图片'</span>));<span class="comment">//这里是设置F1单元格的内容</span></div><div class="line">$objDrawing = <span class="keyword">new</span> \PHPExcel_Worksheet_Drawing();</div><div class="line"><span class="comment">//给单元格添加图片 </span></div><div class="line"><span class="keyword">foreach</span> ($list <span class="keyword">as</span> $key =&gt; $value) &#123; $i = $key + <span class="number">2</span>;<span class="comment">//表格是从第2行开始的 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'A'</span> . $i, $value[<span class="string">'id'</span>]);<span class="comment">//里是设置A1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'B'</span> . $i, $value[<span class="string">'orderId'</span>]);<span class="comment">//这里是设置B1单元格的内容</span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'C'</span> . $i, $value[<span class="string">'phoNumber'</span>]);<span class="comment">//这里是设置C1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'D'</span> . $i, $value[<span class="string">'fanName'</span>]);<span class="comment">//这里是设置D1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'E'</span> . $i, $value[<span class="string">'orderTime'</span>]);<span class="comment">//这里是设置E1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'F'</span> . $i, $value[<span class="string">'goodsName'</span>]);<span class="comment">//这里是设置F1单元格的内容 </span></div><div class="line">$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(<span class="string">'G'</span> . $i, $value[<span class="string">'category'</span>]);<span class="comment">//这里是设置G1单元格的内容 </span></div><div class="line"><span class="comment">//添加图片// $objDrawing-&gt;setName($value['goodsName']);</span></div><div class="line"><span class="comment">// $objDrawing-&gt;setDescription($value['goodsName']);</span></div><div class="line"><span class="comment">// $objDrawing-&gt;setPath('/Public/upload/20161014/2.jpg'); </span></div><div class="line"><span class="comment">//图片引入位置</span></div><div class="line"><span class="comment">// $objDrawing-&gt;setCoordinates('H'.$i); //图片添加位置</span></div><div class="line"><span class="comment">// $objDrawing-&gt;setOffsetX(210);</span></div><div class="line"><span class="comment">// $objDrawing-&gt;setRotation(25);</span></div><div class="line"><span class="comment">// $objDrawing-&gt;setHeight(36);</span></div><div class="line"><span class="comment">// $objDrawing-&gt;getShadow()-&gt;setVisible(true);</span></div><div class="line"><span class="comment">// $objDrawing-&gt;getShadow()-&gt;setDirection(45); &#125;; </span></div><div class="line">$objWriter = <span class="keyword">new</span> \PHPExcel_Writer_Excel5($objPHPExcel);<span class="comment">//保存excel—2007格式 </span></div><div class="line">$name = <span class="string">'未发货订单表-'</span> . date(<span class="string">'Ymd'</span>); </div><div class="line"></div><div class="line">header(<span class="string">'Content-Type: application/vnd.ms-excel'</span>); </div><div class="line">header(<span class="string">'Content-Disposition: attachment;filename="'</span> . $name . <span class="string">'.xls"'</span>); </div><div class="line">header(<span class="string">'Cache-Control: max-age=0'</span>); </div><div class="line">$objWriter-&gt;save(<span class="string">'php://output'</span>);</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/20/hello-world/" data-id="cj0hizwr30000m4wct22lgg95" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/16/execl/" data-id="cj0hj58nw0004z4wcdkk058a2" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/excel/">excel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tp-nagination" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/29/tp-nagination/" class="article-date">
+  <time datetime="2016-09-29T12:01:54.000Z" itemprop="datePublished">2016-09-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/thinkphp/">thinkphp</a>►<a class="article-category-link" href="/categories/thinkphp/nagination/">nagination</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/29/tp-nagination/">tp-nagination</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="thinkphp3-2-3分页"><a href="#thinkphp3-2-3分页" class="headerlink" title="thinkphp3.2.3分页"></a>thinkphp3.2.3分页</h3><h3 id="分页类修改为bootstrap样式"><a href="#分页类修改为bootstrap样式" class="headerlink" title="分页类修改为bootstrap样式"></a>分页类修改为bootstrap样式</h3><blockquote>
+<p>将官方Tnink下面的Page类用下面的代码全部覆盖。即可使用。<br>使用前请引入bootstarp样式。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">// +----------------------------------------------------------------------</span></div><div class="line"><span class="comment">// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]</span></div><div class="line"><span class="comment">// +----------------------------------------------------------------------</span></div><div class="line"><span class="comment">// | Copyright (c) 2006-2014 http://thinkphp.cn All rights reserved.</span></div><div class="line"><span class="comment">// +----------------------------------------------------------------------</span></div><div class="line"><span class="comment">// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )</span></div><div class="line"><span class="comment">// +----------------------------------------------------------------------</span></div><div class="line"><span class="comment">// | Author: 麦当苗儿 &lt;zuojiazi@vip.qq.com&gt; &lt;http://www.zjzit.cn&gt;</span></div><div class="line"><span class="comment">// +----------------------------------------------------------------------</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">Think</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Page</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $firstRow; <span class="comment">// 起始行数</span></div><div class="line">    <span class="keyword">public</span> $listRows; <span class="comment">// 列表每页显示行数</span></div><div class="line">    <span class="keyword">public</span> $parameter; <span class="comment">// 分页跳转时要带的参数</span></div><div class="line">    <span class="keyword">public</span> $totalRows; <span class="comment">// 总行数</span></div><div class="line">    <span class="keyword">public</span> $totalPages; <span class="comment">// 分页总页面数</span></div><div class="line">    <span class="keyword">public</span> $rollPage   = <span class="number">11</span>;<span class="comment">// 分页栏每页显示的页数</span></div><div class="line">    <span class="keyword">public</span> $lastSuffix = <span class="keyword">true</span>; <span class="comment">// 最后一页是否显示总页数</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> $p       = <span class="string">'p'</span>; <span class="comment">//分页参数名</span></div><div class="line">    <span class="keyword">private</span> $url     = <span class="string">''</span>; <span class="comment">//当前链接URL</span></div><div class="line">    <span class="keyword">private</span> $nowPage = <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 分页显示定制</span></div><div class="line">    <span class="keyword">private</span> $config  = <span class="keyword">array</span>(</div><div class="line">        <span class="string">'header'</span> =&gt; <span class="string">'&lt;li&gt;&lt;a href="#"&gt;&lt;span class="rows "&gt;共 %TOTAL_ROW% 条记录&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;'</span>,</div><div class="line">        <span class="string">'prev'</span>   =&gt; <span class="string">'&lt;'</span>,</div><div class="line">        <span class="string">'next'</span>   =&gt; <span class="string">'&gt;'</span>,</div><div class="line">        <span class="string">'first'</span>  =&gt; <span class="string">'1...'</span>,</div><div class="line">        <span class="string">'last'</span>   =&gt; <span class="string">'...%TOTAL_PAGE%'</span>,</div><div class="line">        <span class="string">'theme'</span>  =&gt; <span class="string">'%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%'</span>,</div><div class="line">    );</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 架构函数</div><div class="line">     * <span class="doctag">@param</span> array $totalRows  总的记录数</div><div class="line">     * <span class="doctag">@param</span> array $listRows  每页显示记录数</div><div class="line">     * <span class="doctag">@param</span> array $parameter  分页跳转的参数</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($totalRows, $listRows=<span class="number">20</span>, $parameter = array<span class="params">()</span>)</span> </span>&#123;</div><div class="line">        C(<span class="string">'VAR_PAGE'</span>) &amp;&amp; <span class="keyword">$this</span>-&gt;p = C(<span class="string">'VAR_PAGE'</span>); <span class="comment">//设置分页参数名称</span></div><div class="line">        <span class="comment">/* 基础设置 */</span></div><div class="line">        <span class="keyword">$this</span>-&gt;totalRows  = $totalRows; <span class="comment">//设置总记录数</span></div><div class="line">        <span class="keyword">$this</span>-&gt;listRows   = $listRows;  <span class="comment">//设置每页显示行数</span></div><div class="line">        <span class="keyword">$this</span>-&gt;parameter  = <span class="keyword">empty</span>($parameter) ? $_GET : $parameter;</div><div class="line">        <span class="keyword">$this</span>-&gt;nowPage    = <span class="keyword">empty</span>($_GET[<span class="keyword">$this</span>-&gt;p]) ? <span class="number">1</span> : intval($_GET[<span class="keyword">$this</span>-&gt;p]);</div><div class="line">        <span class="keyword">$this</span>-&gt;nowPage    = <span class="keyword">$this</span>-&gt;nowPage&gt;<span class="number">0</span> ? <span class="keyword">$this</span>-&gt;nowPage : <span class="number">1</span>;</div><div class="line">        <span class="keyword">$this</span>-&gt;firstRow   = <span class="keyword">$this</span>-&gt;listRows * (<span class="keyword">$this</span>-&gt;nowPage - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 定制分页链接设置</div><div class="line">     * <span class="doctag">@param</span> string $name  设置名称</div><div class="line">     * <span class="doctag">@param</span> string $value 设置值</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setConfig</span><span class="params">($name,$value)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;config[$name])) &#123;</div><div class="line">            <span class="keyword">$this</span>-&gt;config[$name] = $value;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 生成链接URL</div><div class="line">     * <span class="doctag">@param</span>  integer $page 页码</div><div class="line">     * <span class="doctag">@return</span> string</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">url</span><span class="params">($page)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> str_replace(urlencode(<span class="string">'[PAGE]'</span>), $page, <span class="keyword">$this</span>-&gt;url);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 组装分页链接</div><div class="line">     * <span class="doctag">@return</span> string</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="number">0</span> == <span class="keyword">$this</span>-&gt;totalRows) <span class="keyword">return</span> <span class="string">''</span>;</div><div class="line"></div><div class="line">        <span class="comment">/* 生成URL */</span></div><div class="line">        <span class="keyword">$this</span>-&gt;parameter[<span class="keyword">$this</span>-&gt;p] = <span class="string">'[PAGE]'</span>;</div><div class="line">        <span class="keyword">$this</span>-&gt;url = U(ACTION_NAME, <span class="keyword">$this</span>-&gt;parameter);</div><div class="line">        <span class="comment">/* 计算分页信息 */</span></div><div class="line">        <span class="keyword">$this</span>-&gt;totalPages = ceil(<span class="keyword">$this</span>-&gt;totalRows / <span class="keyword">$this</span>-&gt;listRows); <span class="comment">//总页数</span></div><div class="line">        <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;totalPages) &amp;&amp; <span class="keyword">$this</span>-&gt;nowPage &gt; <span class="keyword">$this</span>-&gt;totalPages) &#123;</div><div class="line">            <span class="keyword">$this</span>-&gt;nowPage = <span class="keyword">$this</span>-&gt;totalPages;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/* 计算分页临时变量 */</span></div><div class="line">        $now_cool_page      = <span class="keyword">$this</span>-&gt;rollPage/<span class="number">2</span>;</div><div class="line">        $now_cool_page_ceil = ceil($now_cool_page);</div><div class="line">        <span class="keyword">$this</span>-&gt;lastSuffix  = <span class="keyword">$this</span>-&gt;totalPages;</div><div class="line">        <span class="keyword">$this</span>-&gt;config[<span class="string">'last'</span>] = <span class="keyword">$this</span>-&gt;totalPages;</div><div class="line"></div><div class="line">        <span class="comment">//上一页</span></div><div class="line">        $up_row  = <span class="keyword">$this</span>-&gt;nowPage - <span class="number">1</span>;</div><div class="line">        $up_page = $up_row &gt; <span class="number">0</span> ? <span class="string">'&lt;li&gt;&lt;a class="prev" href="'</span> . <span class="keyword">$this</span>-&gt;url($up_row) . <span class="string">'"&gt;'</span> . <span class="keyword">$this</span>-&gt;config[<span class="string">'prev'</span>] . <span class="string">'&lt;/a&gt;&lt;/li&gt;'</span> : <span class="string">''</span>;</div><div class="line"></div><div class="line">        <span class="comment">//下一页</span></div><div class="line">        $down_row  = <span class="keyword">$this</span>-&gt;nowPage + <span class="number">1</span>;</div><div class="line">        $down_page = ($down_row &lt;= <span class="keyword">$this</span>-&gt;totalPages) ? <span class="string">'&lt;li&gt;&lt;a class="next" href="'</span> . <span class="keyword">$this</span>-&gt;url($down_row) . <span class="string">'"&gt;'</span> . <span class="keyword">$this</span>-&gt;config[<span class="string">'next'</span>] . <span class="string">'&lt;/a&gt;&lt;/li&gt;'</span> : <span class="string">''</span>;</div><div class="line"></div><div class="line">        <span class="comment">//第一页</span></div><div class="line">        $the_first = <span class="string">''</span>;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;totalPages &gt; <span class="keyword">$this</span>-&gt;rollPage &amp;&amp; (<span class="keyword">$this</span>-&gt;nowPage - $now_cool_page) &gt;= <span class="number">1</span>)&#123;</div><div class="line">            $the_first = <span class="string">'&lt;li&gt;&lt;a class="first" href="'</span> . <span class="keyword">$this</span>-&gt;url(<span class="number">1</span>) . <span class="string">'"&gt;'</span> . <span class="keyword">$this</span>-&gt;config[<span class="string">'first'</span>] . <span class="string">'&lt;/a&gt;&lt;/li&gt;'</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//最后一页</span></div><div class="line">        $the_end = <span class="string">''</span>;</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;totalPages &gt; <span class="keyword">$this</span>-&gt;rollPage &amp;&amp; (<span class="keyword">$this</span>-&gt;nowPage + $now_cool_page) &lt; <span class="keyword">$this</span>-&gt;totalPages)&#123;</div><div class="line">            $the_end = <span class="string">'&lt;li&gt;&lt;a class="end" href="'</span> . <span class="keyword">$this</span>-&gt;url(<span class="keyword">$this</span>-&gt;totalPages) . <span class="string">'"&gt;'</span> . <span class="keyword">$this</span>-&gt;config[<span class="string">'last'</span>] . <span class="string">'&lt;/a&gt;&lt;/li&gt;'</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//数字连接</span></div><div class="line">        $link_page = <span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span>($i = <span class="number">1</span>; $i &lt;= <span class="keyword">$this</span>-&gt;rollPage; $i++)&#123;</div><div class="line">            <span class="keyword">if</span>((<span class="keyword">$this</span>-&gt;nowPage - $now_cool_page) &lt;= <span class="number">0</span> )&#123;</div><div class="line">                $page = $i;</div><div class="line">            &#125;<span class="keyword">elseif</span>((<span class="keyword">$this</span>-&gt;nowPage + $now_cool_page - <span class="number">1</span>) &gt;= <span class="keyword">$this</span>-&gt;totalPages)&#123;</div><div class="line">                $page = <span class="keyword">$this</span>-&gt;totalPages - <span class="keyword">$this</span>-&gt;rollPage + $i;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                $page = <span class="keyword">$this</span>-&gt;nowPage - $now_cool_page_ceil + $i;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>($page &gt; <span class="number">0</span> &amp;&amp; $page != <span class="keyword">$this</span>-&gt;nowPage)&#123;</div><div class="line"></div><div class="line">                <span class="keyword">if</span>($page &lt;= <span class="keyword">$this</span>-&gt;totalPages)&#123;</div><div class="line">                    $link_page .= <span class="string">'&lt;li&gt;&lt;a class="num" href="'</span> . <span class="keyword">$this</span>-&gt;url($page) . <span class="string">'"&gt;'</span> . $page . <span class="string">'&lt;/a&gt;&lt;/li&gt;'</span>;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">if</span>($page &gt; <span class="number">0</span> &amp;&amp; <span class="keyword">$this</span>-&gt;totalPages != <span class="number">1</span>)&#123;</div><div class="line">                    $link_page .= <span class="string">'&lt;li class="active"&gt;&lt;a href="#"&gt;'</span> . $page . <span class="string">'&lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;'</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//替换分页内容</span></div><div class="line">        $page_str = str_replace(</div><div class="line">            <span class="keyword">array</span>(<span class="string">'%HEADER%'</span>, <span class="string">'%NOW_PAGE%'</span>, <span class="string">'%UP_PAGE%'</span>, <span class="string">'%DOWN_PAGE%'</span>, <span class="string">'%FIRST%'</span>, <span class="string">'%LINK_PAGE%'</span>, <span class="string">'%END%'</span>, <span class="string">'%TOTAL_ROW%'</span>),</div><div class="line">            <span class="keyword">array</span>(<span class="keyword">$this</span>-&gt;config[<span class="string">'header'</span>], <span class="keyword">$this</span>-&gt;nowPage, $up_page, $down_page, $the_first, $link_page, $the_end, <span class="keyword">$this</span>-&gt;totalRows, <span class="keyword">$this</span>-&gt;totalPages),</div><div class="line">            <span class="keyword">$this</span>-&gt;config[<span class="string">'theme'</span>]);</div><div class="line">        <span class="keyword">return</span> <span class="string">"&lt;div&gt;&lt;nav&gt; &lt;ul class='pagination'&gt;&#123;$page_str&#125;&lt;/ul&gt;&lt;/nav&gt;&lt;/div&gt;"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="后台读取数据"><a href="#后台读取数据" class="headerlink" title="后台读取数据"></a>后台读取数据</h3><blockquote>
+<p>使用方法更官方版本一样。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$count = M(<span class="string">'video'</span>)-&gt;count();</div><div class="line">$page = <span class="keyword">new</span> \Think\Page($count,<span class="number">5</span>);</div><div class="line">$list = M(<span class="string">'video'</span>)-&gt;limit($page-&gt;firstRow.<span class="string">','</span>.$page-&gt;listRows)-&gt;select();</div><div class="line">$show = $page-&gt;show();<span class="comment">// 分页显示输出</span></div><div class="line"><span class="keyword">$this</span>-&gt;assign(<span class="string">'data'</span>,$list);<span class="comment">// 赋值数据集</span></div><div class="line"><span class="keyword">$this</span>-&gt;assign(<span class="string">'page'</span>,$show);<span class="comment">// 赋值分页输出</span></div><div class="line"><span class="keyword">$this</span>-&gt;display(); <span class="comment">// 输出模板</span></div></pre></td></tr></table></figure>
+<h3 id="前台输入代码"><a href="#前台输入代码" class="headerlink" title="前台输入代码"></a>前台输入代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"mianList"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">volist</span> <span class="attr">name</span>=<span class="string">"data"</span> <span class="attr">id</span>=<span class="string">"vo"</span>&gt;</span> //数据输出</div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"mianList1"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">h4</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;:U('Video/detail')&#125;?id=&#123;$vo.id&#125;"</span>&gt;</span>&#123;$vo.name&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">notempty</span> <span class="attr">name</span>=<span class="string">"vo.qUrl"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"clearfix of"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"400"</span> <span class="attr">id</span>=<span class="string">"player2"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"&#123;$vo.qUrl&#125;"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span> <span class="attr">title</span>=<span class="string">"mp4"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">video</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">notempty</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;$vo.viewCount&#125;阅读.&#123;$vo.commentCount&#125;评论.&#123;$vo.createdAt&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">volist</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text-center"</span>&gt;</span></div><div class="line">    &#123;$page&#125;  //分页条显示</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/29/tp-nagination/" data-id="cj0hj58q70021z4wcs15dv8ak" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nagination/">nagination</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkphp/">thinkphp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-summernote" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/23/summernote/" class="article-date">
+  <time datetime="2016-09-23T15:44:18.000Z" itemprop="datePublished">2016-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/bootstrap/">bootstrap</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/23/summernote/">summernote</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="summernote上传图片到七牛云"><a href="#summernote上传图片到七牛云" class="headerlink" title="summernote上传图片到七牛云"></a>summernote上传图片到七牛云</h3><h3 id="内容中的图片上传"><a href="#内容中的图片上传" class="headerlink" title="内容中的图片上传"></a>内容中的图片上传</h3><blockquote>
+<p>默认是base64格式，现在需要上传七牛云，并改成七牛云链接格式</p>
+</blockquote>
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#summernote'</span>).summernote(&#123;</div><div class="line">                <span class="attr">height</span>: <span class="number">300</span>,                 <span class="comment">// set editor height</span></div><div class="line">                minHeight: <span class="literal">null</span>,             <span class="comment">// set minimum height of editor</span></div><div class="line">                maxHeight: <span class="literal">null</span>,             <span class="comment">// set maximum height of editor</span></div><div class="line">                focus: <span class="literal">true</span>,</div><div class="line">                <span class="attr">lang</span>:<span class="string">'zh-CN'</span>,</div><div class="line">                <span class="attr">callbacks</span>: &#123;</div><div class="line">                    <span class="attr">onImageUpload</span>: <span class="function"><span class="keyword">function</span>(<span class="params">files</span>) </span>&#123;</div><div class="line">                        <span class="keyword">var</span> data = <span class="keyword">new</span> FormData(); <span class="comment">//使用FormData对象上传</span></div><div class="line">                        data.append(<span class="string">'file'</span>, files[<span class="number">0</span>]);</div><div class="line">                        $.ajax(&#123;</div><div class="line">                            <span class="attr">url</span>: <span class="string">'/Home/file/uploadQiNiu'</span>,</div><div class="line">                            <span class="attr">method</span>: <span class="string">'POST'</span>,</div><div class="line">                            <span class="attr">data</span>: data,</div><div class="line">                            <span class="attr">processData</span>: <span class="literal">false</span>,</div><div class="line">                            <span class="attr">contentType</span>: <span class="literal">false</span>,</div><div class="line">                            <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">                                $(<span class="string">'#summernote'</span>).summernote(<span class="string">'insertImage'</span>, url);</div><div class="line">                            &#125;</div><div class="line">                        &#125;);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div></pre></td></tr></table></figure>
+<h3 id="php后端"><a href="#php后端" class="headerlink" title="php后端"></a>php后端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 上传七牛云</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">uploadQiNiu</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>($_FILES[<span class="string">'file'</span>][<span class="string">'tmp_name'</span>])&#123;</div><div class="line">        <span class="comment">//上传七牛云</span></div><div class="line">        $urlKey = time().$_FILES[<span class="string">'fileup'</span>][<span class="string">'name'</span>];</div><div class="line">        $url = uploadQiniu($urlKey,$_FILES[<span class="string">'fileup'</span>][<span class="string">'tmp_name'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;ajaxReturn(<span class="keyword">array</span>(<span class="string">'urlKey'</span>=&gt;$urlKey,<span class="string">'url'</span>=&gt;$url),<span class="string">'json'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/23/summernote/" data-id="cj0hj58o30006z4wcmnjtte53" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qiniuyun/">qiniuyun</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/summernote/">summernote</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-thinkphp3-2-3-vendor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/22/thinkphp3-2-3-vendor/" class="article-date">
+  <time datetime="2016-09-22T14:23:16.000Z" itemprop="datePublished">2016-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>►<a class="article-category-link" href="/categories/php/thinkphp/">thinkphp</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/22/thinkphp3-2-3-vendor/">thinkphp3.2.3_vendor</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="thinkphp3-2-3框架引入第三方包"><a href="#thinkphp3-2-3框架引入第三方包" class="headerlink" title="thinkphp3.2.3框架引入第三方包"></a>thinkphp3.2.3框架引入第三方包</h3><blockquote>
+<p>注意是引入以.php结尾的</p>
+</blockquote>
+<h3 id="下载需要引入的第三方包，然后拷贝到Think-Library-Vendor-目录下"><a href="#下载需要引入的第三方包，然后拷贝到Think-Library-Vendor-目录下" class="headerlink" title="下载需要引入的第三方包，然后拷贝到Think/Library/Vendor/目录下"></a>下载需要引入的第三方包，然后拷贝到Think/Library/Vendor/目录下</h3><h3 id="在需要引入的控制器、模型、函数等地方，使用vendor-方法引入第三包即可"><a href="#在需要引入的控制器、模型、函数等地方，使用vendor-方法引入第三包即可" class="headerlink" title="在需要引入的控制器、模型、函数等地方，使用vendor()方法引入第三包即可"></a>在需要引入的控制器、模型、函数等地方，使用vendor()方法引入第三包即可</h3><h3 id="示例：引入七牛云SDK"><a href="#示例：引入七牛云SDK" class="headerlink" title="示例：引入七牛云SDK"></a>示例：引入七牛云SDK</h3><h4 id="下载七牛云SDK-拷贝到Think-Library-Vendor-目录下，此时的路径是Think-Library-Vendor-qiniuyun。"><a href="#下载七牛云SDK-拷贝到Think-Library-Vendor-目录下，此时的路径是Think-Library-Vendor-qiniuyun。" class="headerlink" title="下载七牛云SDK,拷贝到Think/Library/Vendor/目录下，此时的路径是Think/Library/Vendor/qiniuyun。"></a>下载七牛云SDK,拷贝到Think/Library/Vendor/目录下，此时的路径是Think/Library/Vendor/qiniuyun。</h4><h4 id="在控制器中引入七牛云，就可以使用了。"><a href="#在控制器中引入七牛云，就可以使用了。" class="headerlink" title="在控制器中引入七牛云，就可以使用了。"></a>在控制器中引入七牛云，就可以使用了。</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vendor(<span class="string">'qiniuyun.autoload'</span>); <span class="comment">//引入七牛云SDK</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/22/thinkphp3-2-3-vendor/" data-id="cj0hj58o6000az4wcek4jlp42" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkphp/">thinkphp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ueditor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/21/ueditor/" class="article-date">
+  <time datetime="2016-09-21T14:33:59.000Z" itemprop="datePublished">2016-09-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>►<a class="article-category-link" href="/categories/php/thinkphp/">thinkphp</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/21/ueditor/">UEditor上传文件到七牛云</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="百度编辑器-UEditor"><a href="#百度编辑器-UEditor" class="headerlink" title="百度编辑器 UEditor"></a>百度编辑器 UEditor</h3><blockquote>
+<p>应用场景：<br>使用UEditor上传图片，文件等到七牛云服务器，<br><strong>结果：编辑器图片链接为七牛云链接</strong></p>
+</blockquote>
+<h3 id="sdk资源准备"><a href="#sdk资源准备" class="headerlink" title="sdk资源准备"></a>sdk资源准备</h3><ol>
+<li>七牛云 phpSDK 重命名为qiniuyun</li>
+<li>UEditor [1.4.3.3 php] utf-8版 重命名为ueditor</li>
+</ol>
+<h3 id="集成到thinkphp3-2-3"><a href="#集成到thinkphp3-2-3" class="headerlink" title="集成到thinkphp3.2.3"></a>集成到thinkphp3.2.3</h3><p>因为<code>UEditor</code>已经帮我们写好了php代码，但后缀是.php的，这意味着在thinkphp中，这些文件属于外来的。那么这里就按照外来的文件对待。<br>直接将<code>UEditor</code>sdk和七牛云sdk一起复制到thinkphp3.2.3中的Public目录下面。</p>
+<blockquote>
+<p>想放在别的目录也可以，但是这里不适合再用thinkphp的方法，请将思维转回到传统php来。所以，我才选择放在Pulick目录下面</p>
+</blockquote>
+<p>目录结构如下图:</p>
+<ul>
+<li>Public<ul>
+<li>qiniuyun</li>
+<li>ueditor</li>
+</ul>
+</li>
+</ul>
+<h3 id="改造UEditor"><a href="#改造UEditor" class="headerlink" title="改造UEditor"></a>改造UEditor</h3><blockquote>
+<p>这时的UEditor处理图片的方法是将图片上传到网址根目录下面。具体配置在<code>ueditor/php/config.json</code>文件中。</p>
+</blockquote>
+<p>下面将以上传图片为例：</p>
+<ol>
+<li>修改<code>ueditor/php/config.json</code>配置如下：<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">"imageUrlPrefix"</span>: <span class="string">"http://o7atl50ri.bkt.clouddn.com/"</span>, <span class="comment">/* 图片访问路径前缀，七牛云域名 */</span></div><div class="line"><span class="string">"imagePathFormat"</span>: <span class="string">"&#123;time&#125;&#123;rand:6&#125;"</span>, <span class="comment">/* 上传保存路径,可以自定义保存路径和文件名格式，七牛云图片名称 */</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>这里的配置会返回七牛云链接<code>http://o7atl50ri.bkt.clouddn.com/文件名</code>，并插入到<code>UEditor</code>内容中去。</p>
+</blockquote>
+<ol>
+<li><p>修改<code>ueditor/php/Uploader.class.php</code>如下:</p>
+<p>在<code>Uploader</code>类开始处引入七牛云<code>SDK</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require_once</span> <span class="string">'qiniuyun/autoload.php'</span>;</div></pre></td></tr></table></figure>
+<p>增加七牛云上传方法<code>uploadQiniu</code>:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * 上传七牛云</div><div class="line">     * <span class="doctag">@param</span> $key 七牛云文件名</div><div class="line">     * <span class="doctag">@param</span> $filePath $_FILE[]['tmp_name']</div><div class="line">     * <span class="doctag">@return</span> mixed</div><div class="line">     * <span class="doctag">@throws</span> Exception</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">uploadQiniu</span><span class="params">($key, $filePath)</span></span>&#123;</div><div class="line">        $auth = <span class="keyword">new</span> \Qiniu\Auth(<span class="string">'RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6'</span>,<span class="string">'mOQ5hXi3OVLMA4uy346lYq3cDvSCdKNeGLDwv8UE'</span>);</div><div class="line">        <span class="comment">// 要上传的空间</span></div><div class="line">        $bucket = <span class="string">'gymfile'</span>; </div><div class="line"></div><div class="line">        <span class="comment">// 生成上传 Token</span></div><div class="line">        $token = $auth-&gt;uploadToken($bucket);</div><div class="line"></div><div class="line">        <span class="comment">// 初始化 UploadManager 对象并进行文件的上传</span></div><div class="line">        $uploadMgr = <span class="keyword">new</span> \Qiniu\Storage\UploadManager();</div><div class="line"></div><div class="line">        <span class="comment">// 调用 UploadManager 的 putFile 方法进行文件的上传</span></div><div class="line">        <span class="keyword">list</span>($ret, $err) = $uploadMgr-&gt;putFile($token, $key, $filePath);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> ($err !== <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>修改<code>Uploader</code>类中文件上传方法,最后几行如下:</p>
+<p>原来方法是上传到网址根目录，这里修改成直接上传到七牛云。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//移动文件,上传到七牛云</span></div><div class="line">$res = <span class="keyword">$this</span>-&gt;uploadQiniu(<span class="keyword">$this</span>-&gt;fullName, $file[<span class="string">"tmp_name"</span>]); <span class="comment">//此处修改</span></div><div class="line"><span class="keyword">if</span> (!($res)) &#123; <span class="comment">//移动失败 此处修改</span></div><div class="line">    <span class="keyword">$this</span>-&gt;stateInfo = <span class="keyword">$this</span>-&gt;getStateInfo(<span class="string">"ERROR_FILE_MOVE"</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123; <span class="comment">//移动成功</span></div><div class="line">    <span class="keyword">$this</span>-&gt;stateInfo = <span class="keyword">$this</span>-&gt;stateMap[<span class="number">0</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>####到这里改造结束。如果在form表单提交到后台时，还想提取编辑器传过来内容中的图片链接，请往下看</p>
+</blockquote>
+<h3 id="提取编辑器中所有图片链接"><a href="#提取编辑器中所有图片链接" class="headerlink" title="提取编辑器中所有图片链接"></a>提取编辑器中所有图片链接</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$content = I(<span class="string">'post.editorValue'</span>);</div><div class="line">preg_match_all(<span class="string">'&lt;img.*?src="(.*?)"&gt;'</span>,ltgt($content),$match); <span class="comment">//ltgt()方法是将`&lt;`,`&gt;`等再转换回来</span></div><div class="line">$files = $match[<span class="number">1</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>$match[1]</code>中即为编辑器中所有图片链接</p>
+</blockquote>
+<p>提取<code>$match[1]</code>中，所有七牛云文件名:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$urlKey = <span class="keyword">array</span>();</div><div class="line"><span class="keyword">foreach</span>($files <span class="keyword">as</span> $k=&gt;$v)&#123;</div><div class="line">   $urlKey[$k] = substr(strrchr($v, <span class="string">'/'</span>),<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><code>$urlKey</code>和<code>$match[1]</code>中的数据一一对应，文件名:文件地址</p>
+</blockquote>
+<h3 id="UEditor常用配置"><a href="#UEditor常用配置" class="headerlink" title="UEditor常用配置"></a>UEditor常用配置</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">,charset:<span class="string">"utf-8"</span>  <span class="comment">//针对getAllHtml方法，会在对应的head标签中增加该编码设置。</span></div><div class="line">,initialFrameHeight:<span class="number">500</span>  <span class="comment">//初始化编辑器高度,默认320</span></div><div class="line">,textarea:<span class="string">'editorValue'</span> <span class="comment">// 提交表单时，服务器获取编辑器提交内容的所用的参数，多实例时可以给容器name属性，会将name给定的值最为每个实例的键值，不用每次实例化的时候都设置这个值</span></div><div class="line">,initialContent:<span class="string">'欢迎使用ueditor!'</span>    <span class="comment">//初始化编辑器的内容,也可以通过textarea/script给值，看官网例子</span></div></pre></td></tr></table></figure>
+<h3 id="ltgt-方法"><a href="#ltgt-方法" class="headerlink" title="ltgt()方法"></a>ltgt()方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&amp;lt;转成&lt;,&amp;rt;转成&gt;,&amp;quot;转成"</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ltgt</span><span class="params">($str)</span></span>&#123;</div><div class="line">    $lt = str_replace(<span class="string">'&amp;lt;'</span>,<span class="string">'&lt;'</span>,$str);</div><div class="line">    $gt = str_replace(<span class="string">'&amp;gt;'</span>,<span class="string">'&gt;'</span>,$lt);</div><div class="line">    $quot = str_replace(<span class="string">'&amp;quot;'</span>,<span class="string">'"'</span>,$gt);</div><div class="line">    <span class="keyword">return</span> $quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/21/ueditor/" data-id="cj0hj58oh000hz4wcb0027vn9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qiniuyun/">qiniuyun</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ueditor/">ueditor</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mypage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/20/mypage/" class="article-date">
+  <time datetime="2016-09-20T14:34:15.000Z" itemprop="datePublished">2016-09-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/bootstrap/">bootstrap</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/20/mypage/">mypage</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="将个人主页（静态页面）放置于hexo中"><a href="#将个人主页（静态页面）放置于hexo中" class="headerlink" title="将个人主页（静态页面）放置于hexo中"></a>将个人主页（静态页面）放置于hexo中</h1><h3 id="准备好你的个人主页资源"><a href="#准备好你的个人主页资源" class="headerlink" title="准备好你的个人主页资源"></a>准备好你的个人主页资源</h3><p>我这里使用的模板是Worthy，是一款自适应的bootstrap框架编写的模板。将自己的信息根据实际情况填写到模板上，然后整理好css,js,imgs等资源的路径。在本地测试ok即可。</p>
+<p>我的静态资源最终目录结构如下：</p>
+<ul>
+<li>singi<ul>
+<li>public<ul>
+<li>img //index.html中用的图片</li>
+<li>worthy //worthy模板整个粘贴过来</li>
+</ul>
+</li>
+<li>index.html</li>
+</ul>
+</li>
+</ul>
+<h3 id="将静态资源放置于hexo上"><a href="#将静态资源放置于hexo上" class="headerlink" title="将静态资源放置于hexo上"></a>将静态资源放置于hexo上</h3><p>将整个singi文件夹放置于hexo根目录下面的public文件夹即可。</p>
+<h3 id="上传至服务器（这里是github-pages）"><a href="#上传至服务器（这里是github-pages）" class="headerlink" title="上传至服务器（这里是github  pages）"></a>上传至服务器（这里是github  pages）</h3><p>使用hexo命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g //生成文件</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d //部署文件到github pages 上。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>hexo会将public文件夹中的文件原样上传到giuhub pages上，这就是我想要的效果。然后，访问<code>https://singi2016cn.github.io/singi/</code>就可以看到我的主页了。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/20/mypage/" data-id="cj0hj58q90022z4wcsxycqr07" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-wechat" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/19/wechat/" class="article-date">
+  <time datetime="2016-09-19T13:57:42.000Z" itemprop="datePublished">2016-09-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>►<a class="article-category-link" href="/categories/php/thinkphp/">thinkphp</a>►<a class="article-category-link" href="/categories/php/thinkphp/wechat/">wechat</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/19/wechat/">phpmailer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h1><h2 id="wechat-php-sdk"><a href="#wechat-php-sdk" class="headerlink" title="wechat-php-sdk"></a><a href="http://github.com/dodgepudding/wechat-php-sdk" target="_blank" rel="external">wechat-php-sdk</a></h2><h3 id="下载zip包，只需要wechat-class-php和demo-php"><a href="#下载zip包，只需要wechat-class-php和demo-php" class="headerlink" title="下载zip包，只需要wechat.class.php和demo.php"></a>下载zip包，只需要<code>wechat.class.php</code>和<code>demo.php</code></h3><h3 id="将wechat-class-php复制到ThinkPHP-Library-Org-Util-下，然后在控制器中如下引入"><a href="#将wechat-class-php复制到ThinkPHP-Library-Org-Util-下，然后在控制器中如下引入" class="headerlink" title="将wechat.class.php复制到ThinkPHP/Library/Org/Util/下，然后在控制器中如下引入"></a>将<code>wechat.class.php</code>复制到<code>ThinkPHP/Library/Org/Util/</code>下，然后在控制器中如下引入</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import(<span class="string">'Org.Util.wechat'</span>);<span class="comment">//进入</span></div><div class="line"></div><div class="line">$weObj = <span class="keyword">new</span> \Wechat($option);<span class="comment">//实例化，$option是微信的配置，在demo.php中有demo</span></div></pre></td></tr></table></figure>
+<p>###官方demo<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="string">"wechat.class.php"</span>;</div><div class="line">$options = <span class="keyword">array</span>(</div><div class="line"> <span class="string">'token'</span>=&gt;<span class="string">'tokenaccesskey'</span>, <span class="comment">//填写你设定的key</span></div><div class="line"> <span class="string">'encodingaeskey'</span>=&gt;<span class="string">'encodingaeskey'</span> <span class="comment">//填写加密用的EncodingAESKey，如接口为明文模式可忽略</span></div><div class="line"> );</div><div class="line">$weObj = <span class="keyword">new</span> Wechat($options);</div><div class="line">$weObj-&gt;valid();<span class="comment">//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败</span></div><div class="line">$type = $weObj-&gt;getRev()-&gt;getRevType();</div><div class="line"><span class="keyword">switch</span>($type) &#123;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_TEXT:</div><div class="line"> $weObj-&gt;text(<span class="string">"hello, I'm wechat"</span>)-&gt;reply();</div><div class="line"> <span class="keyword">exit</span>;</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_EVENT:</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_IMAGE:</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">default</span>:</div><div class="line"> $weObj-&gt;text(<span class="string">"help info"</span>)-&gt;reply();</div></pre></td></tr></table></figure></p>
+<h3 id="自己改进后demo"><a href="#自己改进后demo" class="headerlink" title="自己改进后demo"></a>自己改进后demo</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</div><div class="line">import(<span class="string">'Org.Util.Wechat'</span>);</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</div><div class="line">         $options = <span class="keyword">array</span>(</div><div class="line">         <span class="string">'appid'</span> =&gt; <span class="string">'wx51c8eacd17a190c0'</span>,<span class="comment">//微信appid</span></div><div class="line">         <span class="string">'appsecret'</span> =&gt; <span class="string">'f30185d7c8ff809ab44597d7c8ad8457'</span>,<span class="comment">//微信appsecret</span></div><div class="line">         <span class="string">'token'</span> =&gt; <span class="string">'81965224d145c658896fef654072a8a1'</span>, <span class="comment">//填写你设定的key</span></div><div class="line">         <span class="string">'encodingaeskey'</span> =&gt; <span class="string">'cdd96aa3071266d088ad44411066df87cd8bf993ada'</span> <span class="comment">//填写加密用的EncodingAESKey，如接口为明文模式可忽略</span></div><div class="line">    );</div><div class="line">    $weObj = <span class="keyword">new</span> \Wechat($options);</div><div class="line">    $weObj-&gt;valid();<span class="comment">//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败</span></div><div class="line">    $type = $weObj-&gt;getRev()-&gt;getRevType();</div><div class="line">    $openId = $weObj-&gt;getRevFrom();<span class="comment">//获取消息发送者</span></div><div class="line">    $content = $weObj-&gt;getRevContent();<span class="comment">//获取发送内容</span></div><div class="line">    $event = $weObj-&gt;getRevEvent();<span class="comment">//事件类型：$event['event'],类型关键字：$event['key']     </span></div><div class="line">    <span class="comment">//图文数据组织</span></div><div class="line">    $newsCourse = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最好的健身课'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'忍不住地想要上课啦！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    $newsNotice = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最新的公告'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'又有新公告了，进来看看吧，惊喜等着你！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    $newsAbout = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最棒的场馆'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'这个场馆绝对适合你！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    <span class="keyword">switch</span> ($type) &#123;         </div><div class="line">        <span class="keyword">case</span> \Wechat::EVENT_SUBSCRIBE:             </div><div class="line">            <span class="comment">//用户关注微信号时 TODO 没有记录，添加用户user_social_info     </span></div><div class="line">            <span class="keyword">break</span>;    </div><div class="line">        <span class="keyword">case</span> \Wechat::MSGTYPE_TEXT:             </div><div class="line">            <span class="comment">//处理用户输入         </span></div><div class="line">            <span class="keyword">if</span> ($content == <span class="string">'我的课程'</span>) $weObj-&gt;news($newsCourse)-&gt;reply(); </div><div class="line">            $weObj-&gt;text(<span class="string">"欢迎使用精微内容服务!"</span>)-&gt;reply();             </div><div class="line">            <span class="keyword">break</span>;         </div><div class="line">        <span class="keyword">case</span> \Wechat::MSGTYPE_EVENT:             </div><div class="line">            <span class="comment">//处理用户事件         </span></div><div class="line">            <span class="keyword">if</span> ($event[<span class="string">'event'</span>] == <span class="string">'CLICK'</span>) &#123;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'course'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsCourse)-&gt;reply();         </div><div class="line">                &#125;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'notice'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsNotice)-&gt;reply();             </div><div class="line">                &#125;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'about'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsAbout)-&gt;reply();         </div><div class="line">                &#125;     </div><div class="line">            &#125;         </div><div class="line">            <span class="keyword">break</span>;      </div><div class="line">    &#125;; </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/19/wechat/" data-id="cj0hj58oc000dz4wc573bwouv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-phpmailer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/19/phpmailer/" class="article-date">
+  <time datetime="2016-09-19T13:57:42.000Z" itemprop="datePublished">2016-09-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>►<a class="article-category-link" href="/categories/php/thinkphp/">thinkphp</a>►<a class="article-category-link" href="/categories/php/thinkphp/phpmailer/">phpmailer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/19/phpmailer/">phpmailer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="PHPMailer"><a href="#PHPMailer" class="headerlink" title="PHPMailer"></a><a href="https://github.com/PHPMailer/PHPMailer" target="_blank" rel="external">PHPMailer</a></h1><h3 id="安装phpmailer"><a href="#安装phpmailer" class="headerlink" title="安装phpmailer"></a>安装phpmailer</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer require phpmailer/phpmailer</div></pre></td></tr></table></figure>
+<h3 id="Github官方例子"><a href="#Github官方例子" class="headerlink" title="Github官方例子"></a>Github官方例子</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">require</span> <span class="string">'PHPMailerAutoload.php'</span>;</div><div class="line"></div><div class="line">$mail = <span class="keyword">new</span> PHPMailer;</div><div class="line"></div><div class="line"><span class="comment">//$mail-&gt;SMTPDebug = 3;                               // Enable verbose debug output</span></div><div class="line"></div><div class="line">$mail-&gt;isSMTP();                                      <span class="comment">// Set mailer to use SMTP</span></div><div class="line">$mail-&gt;Host = <span class="string">'smtp1.example.com;smtp2.example.com'</span>;  <span class="comment">// Specify main and backup SMTP servers</span></div><div class="line">$mail-&gt;SMTPAuth = <span class="keyword">true</span>;                               <span class="comment">// Enable SMTP authentication</span></div><div class="line">$mail-&gt;Username = <span class="string">'user@example.com'</span>;                 <span class="comment">// SMTP username</span></div><div class="line">$mail-&gt;Password = <span class="string">'secret'</span>;                           <span class="comment">// SMTP password</span></div><div class="line">$mail-&gt;SMTPSecure = <span class="string">'tls'</span>;                            <span class="comment">// Enable TLS encryption, `ssl` also accepted</span></div><div class="line">$mail-&gt;Port = <span class="number">587</span>;                                    <span class="comment">// TCP port to connect to</span></div><div class="line"></div><div class="line">$mail-&gt;setFrom(<span class="string">'from@example.com'</span>, <span class="string">'Mailer'</span>);</div><div class="line">$mail-&gt;addAddress(<span class="string">'joe@example.net'</span>, <span class="string">'Joe User'</span>);     <span class="comment">// Add a recipient</span></div><div class="line">$mail-&gt;addAddress(<span class="string">'ellen@example.com'</span>);               <span class="comment">// Name is optional</span></div><div class="line">$mail-&gt;addReplyTo(<span class="string">'info@example.com'</span>, <span class="string">'Information'</span>);</div><div class="line">$mail-&gt;addCC(<span class="string">'cc@example.com'</span>);</div><div class="line">$mail-&gt;addBCC(<span class="string">'bcc@example.com'</span>);</div><div class="line"></div><div class="line">$mail-&gt;addAttachment(<span class="string">'/var/tmp/file.tar.gz'</span>);         <span class="comment">// Add attachments</span></div><div class="line">$mail-&gt;addAttachment(<span class="string">'/tmp/image.jpg'</span>, <span class="string">'new.jpg'</span>);    <span class="comment">// Optional name</span></div><div class="line">$mail-&gt;isHTML(<span class="keyword">true</span>);                                  <span class="comment">// Set email format to HTML</span></div><div class="line"></div><div class="line">$mail-&gt;Subject = <span class="string">'Here is the subject'</span>;</div><div class="line">$mail-&gt;Body    = <span class="string">'This is the HTML message body &lt;b&gt;in bold!&lt;/b&gt;'</span>;</div><div class="line">$mail-&gt;AltBody = <span class="string">'This is the body in plain text for non-HTML mail clients'</span>;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(!$mail-&gt;send()) &#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'Message could not be sent.'</span>;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'Mailer Error: '</span> . $mail-&gt;ErrorInfo;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'Message has been sent'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="准备发送邮件的服务器，这里选择QQ-STMP-服务器。"><a href="#准备发送邮件的服务器，这里选择QQ-STMP-服务器。" class="headerlink" title="准备发送邮件的服务器，这里选择QQ STMP 服务器。"></a>准备发送邮件的服务器，这里选择QQ STMP 服务器。</h3><p>登录QQ邮箱，设置-&gt;账户-&gt;POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务，这一选项下，开通POP3/SMTP服务。需要发送短信生成授权码（0.1元/条），然后记住生成的授权码，后面需要用到。</p>
+<h3 id="编写自己的邮件发送函数"><a href="#编写自己的邮件发送函数" class="headerlink" title="编写自己的邮件发送函数"></a>编写自己的邮件发送函数</h3><p>我使用的是thinkphp3.2.3，把phpmailer包下载下来，然后放在到Thinkphp/Library/Vendor/目录下，这时的路径为Thinkphp/Library/Vendor/phpmailer,然后在函数前面引入phpmailer，如下面代码所示，即可正常使用phpmailer。</p>
+<blockquote>
+<h4 id="注意-自动加载文件是引入PHPMailerAutoload-php，不是autoload-php"><a href="#注意-自动加载文件是引入PHPMailerAutoload-php，不是autoload-php" class="headerlink" title="注意:自动加载文件是引入PHPMailerAutoload.php，不是autoload.php"></a>注意:自动加载文件是引入PHPMailerAutoload.php，不是autoload.php</h4></blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">vendor(<span class="string">'phpmailer.PHPMailerAutoload'</span>);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 发送邮件</div><div class="line"> * <span class="doctag">@param</span> $subject //邮件主题</div><div class="line"> * <span class="doctag">@param</span> $body //邮件内容</div><div class="line"> * <span class="doctag">@param</span> $to_mail //发送到邮箱地址</div><div class="line"> * <span class="doctag">@return</span> bool</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">send_mail</span><span class="params">($subject,$body,$to_mail)</span></span>&#123;</div><div class="line">    date_default_timezone_set(<span class="string">'PRC'</span>);<span class="comment">//设置时区</span></div><div class="line">    $mail-&gt;CharSet = <span class="string">'UTF-8'</span>; <span class="comment">//设置邮件的字符编码，这很重要，不然中文乱码</span></div><div class="line">    </div><div class="line">    $mail = <span class="keyword">new</span> \PHPMailer();</div><div class="line"><span class="comment">//  $mail-&gt;SMTPDebug = 3;                // 调试模式，有错误的情况下最好打开，便于查出错误</span></div><div class="line">    $mail-&gt;isSMTP();                       <span class="comment">// 使用 SMTP</span></div><div class="line">    $mail-&gt;Host = <span class="string">'smtp.qq.com'</span>;           <span class="comment">// 使用 QQ的 SMTP 服务器</span></div><div class="line">    $mail-&gt;SMTPAuth = <span class="keyword">true</span>;                <span class="comment">// 使用 SMTP 权鉴，必须</span></div><div class="line">    $mail-&gt;Username = <span class="string">'发送邮件地址'</span>;        <span class="comment">// SMTP username</span></div><div class="line">    $mail-&gt;Password = <span class="string">'发送邮件QQ授权码'</span>;    <span class="comment">// SMTP password,使用qq的话,是授权码,不是邮箱登录密码!!!</span></div><div class="line">    $mail-&gt;SMTPSecure = <span class="string">'ssl'</span>;             <span class="comment">// Enable TLS encryption, `ssl` also accepted 加密</span></div><div class="line">    $mail-&gt;Port = <span class="number">465</span>;                     <span class="comment">// TCP port to connect to 链接端口:465或587</span></div><div class="line"></div><div class="line">    $mail-&gt;setFrom(<span class="string">'服务器邮箱地址'</span>, <span class="string">'别名'</span>);   <span class="comment">//服务器邮箱地址，第二个参数是别名，从服务器邮箱发送到哪</span></div><div class="line">    $mail-&gt;addAddress($to_mail, <span class="string">'别名'</span>);     <span class="comment">// 接受邮箱地址,可以添加多个</span></div><div class="line"><span class="comment">//  $mail-&gt;addReplyTo('info@example.com', 'Information');</span></div><div class="line"><span class="comment">//  $mail-&gt;addCC('cc@example.com');</span></div><div class="line"><span class="comment">//  $mail-&gt;addBCC('bcc@example.com');</span></div><div class="line"></div><div class="line"><span class="comment">//  $mail-&gt;addAttachment('./admin.php');         // 添加附件，附件地址是服务器上的地址</span></div><div class="line"><span class="comment">//  $mail-&gt;addAttachment('./1464581020.jpg', 'new.jpg'); // 可以给附件设置别名，附件地址是服务器上的地址</span></div><div class="line">    $mail-&gt;isHTML(<span class="keyword">true</span>);                         <span class="comment">// 发送 HTML格式的内容</span></div><div class="line"></div><div class="line">    $mail-&gt;Subject = $subject;<span class="comment">//邮件主题</span></div><div class="line">    $mail-&gt;Body    = <span class="string">'&lt;p&gt;'</span>.$body.<span class="string">'&lt;/p&gt;'</span>;<span class="comment">//邮件内容</span></div><div class="line"><span class="comment">//  $mail-&gt;AltBody = 'This is the body in plain text for non-HTML mail clients'; //纯文本邮件内容</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!$mail-&gt;send()) &#123;</div><div class="line"><span class="comment">//        return $mail-&gt;ErrorInfo;//调试的时候返回错误信息，我这里测试成功了，就不返回了。</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="调用函数，发送邮件"><a href="#调用函数，发送邮件" class="headerlink" title="调用函数，发送邮件"></a>调用函数，发送邮件</h3><p>在控制器中直接调用<strong>send_mail($subject,$body,$to_mail)</strong>函数，就可以成功向指定的邮箱发送邮件了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/19/phpmailer/" data-id="cj0hj58qq002ez4wc6tar4bzk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phpmailer/">phpmailer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkphp/">thinkphp</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-RowDataPacket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/07/RowDataPacket/" class="article-date">
+  <time datetime="2016-09-06T16:04:53.000Z" itemprop="datePublished">2016-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nodejs/">nodejs</a>►<a class="article-category-link" href="/categories/nodejs/express/">express</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/07/RowDataPacket/">RowDataPacket</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="nodejs-express-mysql-操作返回的RowDataPacket处理。"><a href="#nodejs-express-mysql-操作返回的RowDataPacket处理。" class="headerlink" title="nodejs express mysql 操作返回的RowDataPacket处理。"></a>nodejs express mysql 操作返回的RowDataPacket处理。</h3><h3 id="1-可以在mysql的设置中返回json格式数据"><a href="#1-可以在mysql的设置中返回json格式数据" class="headerlink" title="1 可以在mysql的设置中返回json格式数据"></a>1 可以在mysql的设置中返回json格式数据</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      host            : '***',</div><div class="line">      user            : '***',</div><div class="line">      password        : '***',</div><div class="line">      database        : '***',</div><div class="line">      stringifyObjects: true, //返回Json格式数据,false则返回RowDataPacket对象</div><div class="line">      dateStrings     : true //日期格式化成 "Y-m-d H:i:s",false则为UTC标准时间</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="2-手动转换RowDataPacket对象，再返回渲染输出"><a href="#2-手动转换RowDataPacket对象，再返回渲染输出" class="headerlink" title="2 手动转换RowDataPacket对象，再返回渲染输出"></a>2 手动转换RowDataPacket对象，再返回渲染输出</h3><p>可以用JSON.stringify(RowDataPacket)转化为json字符串，然后在返回。</p>
+<h3 id="3-直接返回RowDataPacket对象，渲染输出"><a href="#3-直接返回RowDataPacket对象，渲染输出" class="headerlink" title="3 直接返回RowDataPacket对象，渲染输出"></a>3 直接返回RowDataPacket对象，渲染输出</h3><blockquote>
+<p>其实也是一个二维数组，渲染的时候forEach()遍历输出就可以了，这里演示的ejs渲染输出.</p>
+</blockquote>
+<p>后台返回数据<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.render(<span class="string">'index'</span>,&#123;<span class="attr">count</span>:count,<span class="attr">page</span>:page,<span class="attr">rows</span>:length,<span class="attr">data</span>:rows&#125;);</div></pre></td></tr></table></figure></p>
+<p>前台ejs渲染输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% data.forEach(function(v)&#123; %&gt;</div><div class="line">    &lt;tr&gt;</div><div class="line">        &lt;td&gt;&lt;%= v[&apos;id&apos;] %&gt;&lt;/td&gt; //可以用数组方式，适用于属性是这种变态的时候:&quot;count(id):4&quot;,用v[&apos;count(id)&apos;]获取</div><div class="line">        &lt;td&gt;&lt;%= v.name %&gt;&lt;/td&gt; //也可以用.方式</div><div class="line">        &lt;td&gt;&lt;%= v.skill %&gt;&lt;/td&gt;</div><div class="line">    &lt;/tr&gt;</div><div class="line">&lt;% &#125;) %&gt;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/07/RowDataPacket/" data-id="cj0hj58nq0001z4wcjt761vjx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RowDataPacket/">RowDataPacket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hexoGithub" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/05/hexoGithub/" class="article-date">
+  <time datetime="2016-09-05T13:54:15.000Z" itemprop="datePublished">2016-09-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/05/hexoGithub/">hexoGithub</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="hexo安装博客并发布到github上-deply-hexo-on-github"><a href="#hexo安装博客并发布到github上-deply-hexo-on-github" class="headerlink" title="hexo安装博客并发布到github上 deply hexo on github"></a>hexo安装博客并发布到github上 deply hexo on github</h1><blockquote>
+<h4 id="hexo-初级使用教程"><a href="#hexo-初级使用教程" class="headerlink" title="hexo 初级使用教程"></a>hexo 初级使用教程</h4></blockquote>
+<h3 id="1-安装hexo-install-hexo"><a href="#1-安装hexo-install-hexo" class="headerlink" title="1 安装hexo install hexo"></a>1 安装<code>hexo</code> install hexo</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g</div><div class="line">hexo init blog</div><div class="line"><span class="built_in">cd</span> blog</div><div class="line">npm install</div><div class="line">hexo server</div></pre></td></tr></table></figure>
+<h3 id="2-创建github仓库-create-github-repository"><a href="#2-创建github仓库-create-github-repository" class="headerlink" title="2 创建github仓库 create github repository"></a>2 创建github仓库 create github repository</h3><ul>
+<li><p>一个用来存hexo项目 one for hexo project</p>
+<blockquote>
+<p>这里是用来写博客使用的项目，只要clone这里的项目，就可以继续以前的进度写博客。</p>
+</blockquote>
+</li>
+<li><p>一个用来存生成的blog(这里是可以访问的博客) one for hexo blog</p>
+<blockquote>
+<p>这里是github提供的可访问的静态网页网址。仓库的命名需要符合规范：<br><code>github用户名.github.io</code>，例如我的github用户名是singi2016cn，那么我的仓库命名就是<code>singi2016cn.github.io</code>,直接访问<code>http://singi2016cn.github.io</code>就可以看到。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-使用hexo写博客并上传至github"><a href="#3-使用hexo写博客并上传至github" class="headerlink" title="3 使用hexo写博客并上传至github"></a>3 使用hexo写博客并上传至github</h3><ol>
+<li>创建新文章<br>hexo new 文章名<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new firstBlog  //也可以使用缩写 hexo n 文章名</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后在<code>source/_posts/</code>下面找到刚生成的新文件，可以使用mardown工具打开进行编辑，然后保存。</p>
+<ol>
+<li><p>生成文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo ganerate  //缩写 hexo g</div></pre></td></tr></table></figure>
+</li>
+<li><p>发布文件<br>在此之前需要先设置一个git<br>安装 <code>git</code> 命令行工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后在<code>_config.yml</code>文件中添加下面的配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git //类型为git</div><div class="line">  repo: &lt;repository url&gt; //github仓库地址</div><div class="line">  branch: [branch] //仓库分支，没有会自动检测</div><div class="line">  message: [message] //提交信息，默认为 `Site updated: 2016-09-05 21:58:45`</div></pre></td></tr></table></figure></p>
+<p>配置完成之后，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo deply //缩写hexo d</div></pre></td></tr></table></figure></p>
+<p>即可发布到github上面，然后访问之前的网址就可以看到自己的博客网站了</p>
+<h3 id="待探索"><a href="#待探索" class="headerlink" title="待探索"></a>待探索</h3><ol>
+<li>添加标签tag和分类category</li>
+<li>更换更加炫酷的主题</li>
+</ol>
+<blockquote>
+<p>感谢<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>带来极致的创建博客之旅</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/05/hexoGithub/" data-id="cj0hj58nl0000z4wctenqajrn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
     </footer>
   </div>
   
@@ -107,23 +628,48 @@
 
   
 
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
 </section>
         
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/bootstrap/">bootstrap</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodejs/">nodejs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/nodejs/express/">express</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/php/thinkphp/">thinkphp</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/php/thinkphp/excel/">excel</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/thinkphp/phpmailer/">phpmailer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/thinkphp/wechat/">wechat</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/thinkphp/">thinkphp</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/thinkphp/nagination/">nagination</a></li></ul></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RowDataPacket/">RowDataPacket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap/">bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/express/">express</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nagination/">nagination</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpmailer/">phpmailer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qiniuyun/">qiniuyun</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summernote/">summernote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkphp/">thinkphp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ueditor/">ueditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/RowDataPacket/" style="font-size: 10px;">RowDataPacket</a> <a href="/tags/bootstrap/" style="font-size: 13.33px;">bootstrap</a> <a href="/tags/excel/" style="font-size: 10px;">excel</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/nagination/" style="font-size: 10px;">nagination</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/php/" style="font-size: 16.67px;">php</a> <a href="/tags/phpmailer/" style="font-size: 10px;">phpmailer</a> <a href="/tags/qiniuyun/" style="font-size: 13.33px;">qiniuyun</a> <a href="/tags/summernote/" style="font-size: 10px;">summernote</a> <a href="/tags/thinkphp/" style="font-size: 20px;">thinkphp</a> <a href="/tags/ueditor/" style="font-size: 10px;">ueditor</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
     </div>
   </div>
 
@@ -136,7 +682,23 @@
       <ul>
         
           <li>
-            <a href="/2017/03/20/hello-world/">Hello World</a>
+            <a href="/2016/10/16/execl/">execl</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/29/tp-nagination/">tp-nagination</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/23/summernote/">summernote</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/22/thinkphp3-2-3-vendor/">thinkphp3.2.3_vendor</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/21/ueditor/">UEditor上传文件到七牛云</a>
           </li>
         
       </ul>

@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Hexo</title>
+  <title>RowDataPacket | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="nodejs express mysql 操作返回的RowDataPacket处理。1 可以在mysql的设置中返回json格式数据12345678&amp;#123;      host            : &apos;***&apos;,      user            : &apos;***&apos;,      password        : &apos;***&apos;,      database        : &apos;***&apos;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RowDataPacket">
+<meta property="og:url" content="http://yoursite.com/2016/09/07/RowDataPacket/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="nodejs express mysql 操作返回的RowDataPacket处理。1 可以在mysql的设置中返回json格式数据12345678&amp;#123;      host            : &apos;***&apos;,      user            : &apos;***&apos;,      password        : &apos;***&apos;,      database        : &apos;***&apos;,">
+<meta property="og:updated_time" content="2017-02-28T09:14:56.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="RowDataPacket">
+<meta name="twitter:description" content="nodejs express mysql 操作返回的RowDataPacket处理。1 可以在mysql的设置中返回json格式数据12345678&amp;#123;      host            : &apos;***&apos;,      user            : &apos;***&apos;,      password        : &apos;***&apos;,      database        : &apos;***&apos;,">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,215 +63,74 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/16/execl/" class="archive-article-date">
-  <time datetime="2016-10-16T09:53:15.000Z" itemprop="datePublished">Oct 16</time>
+        <section id="main"><article id="post-RowDataPacket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/07/RowDataPacket/" class="article-date">
+  <time datetime="2016-09-06T16:04:53.000Z" itemprop="datePublished">2016-09-07</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nodejs/">nodejs</a>►<a class="article-category-link" href="/categories/nodejs/express/">express</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/16/execl/">execl</a>
+    <h1 class="article-title" itemprop="name">
+      RowDataPacket
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/29/tp-nagination/" class="archive-article-date">
-  <time datetime="2016-09-29T12:01:54.000Z" itemprop="datePublished">Sep 29</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/29/tp-nagination/">tp-nagination</a>
-    </h1>
-  
+        <h3 id="nodejs-express-mysql-操作返回的RowDataPacket处理。"><a href="#nodejs-express-mysql-操作返回的RowDataPacket处理。" class="headerlink" title="nodejs express mysql 操作返回的RowDataPacket处理。"></a>nodejs express mysql 操作返回的RowDataPacket处理。</h3><h3 id="1-可以在mysql的设置中返回json格式数据"><a href="#1-可以在mysql的设置中返回json格式数据" class="headerlink" title="1 可以在mysql的设置中返回json格式数据"></a>1 可以在mysql的设置中返回json格式数据</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      host            : '***',</div><div class="line">      user            : '***',</div><div class="line">      password        : '***',</div><div class="line">      database        : '***',</div><div class="line">      stringifyObjects: true, //返回Json格式数据,false则返回RowDataPacket对象</div><div class="line">      dateStrings     : true //日期格式化成 "Y-m-d H:i:s",false则为UTC标准时间</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="2-手动转换RowDataPacket对象，再返回渲染输出"><a href="#2-手动转换RowDataPacket对象，再返回渲染输出" class="headerlink" title="2 手动转换RowDataPacket对象，再返回渲染输出"></a>2 手动转换RowDataPacket对象，再返回渲染输出</h3><p>可以用JSON.stringify(RowDataPacket)转化为json字符串，然后在返回。</p>
+<h3 id="3-直接返回RowDataPacket对象，渲染输出"><a href="#3-直接返回RowDataPacket对象，渲染输出" class="headerlink" title="3 直接返回RowDataPacket对象，渲染输出"></a>3 直接返回RowDataPacket对象，渲染输出</h3><blockquote>
+<p>其实也是一个二维数组，渲染的时候forEach()遍历输出就可以了，这里演示的ejs渲染输出.</p>
+</blockquote>
+<p>后台返回数据<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.render(<span class="string">'index'</span>,&#123;<span class="attr">count</span>:count,<span class="attr">page</span>:page,<span class="attr">rows</span>:length,<span class="attr">data</span>:rows&#125;);</div></pre></td></tr></table></figure></p>
+<p>前台ejs渲染输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% data.forEach(function(v)&#123; %&gt;</div><div class="line">    &lt;tr&gt;</div><div class="line">        &lt;td&gt;&lt;%= v[&apos;id&apos;] %&gt;&lt;/td&gt; //可以用数组方式，适用于属性是这种变态的时候:&quot;count(id):4&quot;,用v[&apos;count(id)&apos;]获取</div><div class="line">        &lt;td&gt;&lt;%= v.name %&gt;&lt;/td&gt; //也可以用.方式</div><div class="line">        &lt;td&gt;&lt;%= v.skill %&gt;&lt;/td&gt;</div><div class="line">    &lt;/tr&gt;</div><div class="line">&lt;% &#125;) %&gt;</div></pre></td></tr></table></figure></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/23/summernote/" class="archive-article-date">
-  <time datetime="2016-09-23T15:44:18.000Z" itemprop="datePublished">Sep 23</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/23/summernote/">summernote</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/22/thinkphp3-2-3-vendor/" class="archive-article-date">
-  <time datetime="2016-09-22T14:23:16.000Z" itemprop="datePublished">Sep 22</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/07/RowDataPacket/" data-id="cj0hj58nq0001z4wcjt761vjx" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/22/thinkphp3-2-3-vendor/">thinkphp3.2.3_vendor</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/21/ueditor/" class="archive-article-date">
-  <time datetime="2016-09-21T14:33:59.000Z" itemprop="datePublished">Sep 21</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/21/ueditor/">UEditor上传文件到七牛云</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RowDataPacket/">RowDataPacket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/19/phpmailer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          phpmailer
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/05/hexoGithub/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexoGithub</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/20/mypage/" class="archive-article-date">
-  <time datetime="2016-09-20T14:34:15.000Z" itemprop="datePublished">Sep 20</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/20/mypage/">mypage</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/19/wechat/" class="archive-article-date">
-  <time datetime="2016-09-19T13:57:42.000Z" itemprop="datePublished">Sep 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/19/wechat/">phpmailer</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/19/phpmailer/" class="archive-article-date">
-  <time datetime="2016-09-19T13:57:42.000Z" itemprop="datePublished">Sep 19</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/19/phpmailer/">phpmailer</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/07/RowDataPacket/" class="archive-article-date">
-  <time datetime="2016-09-06T16:04:53.000Z" itemprop="datePublished">Sep 7</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/07/RowDataPacket/">RowDataPacket</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/05/hexoGithub/" class="archive-article-date">
-  <time datetime="2016-09-05T13:54:15.000Z" itemprop="datePublished">Sep 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/05/hexoGithub/">hexoGithub</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">__('next') &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">
