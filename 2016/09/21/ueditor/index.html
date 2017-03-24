@@ -107,7 +107,7 @@ sdk资源准备
 UEditor [1.4.3.3 php] utf-8版 重命名为ueditor
 
 集成到thinkphp3.2.3因为UEditor已经帮我们写好了php代码，但后缀是.php的，这意味着在thinkphp中，">
-<meta property="og:updated_time" content="2017-02-28T09:14:56.838Z">
+<meta property="og:updated_time" content="2017-03-24T02:19:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UEditor上传文件到七牛云">
 <meta name="twitter:description" content="百度编辑器 UEditor
@@ -395,14 +395,14 @@ UEditor [1.4.3.3 php] utf-8版 重命名为ueditor
       
 
       
-        <h3 id="百度编辑器-UEditor"><a href="#百度编辑器-UEditor" class="headerlink" title="百度编辑器 UEditor"></a>百度编辑器 UEditor</h3><blockquote>
+        <h1 id="百度编辑器-UEditor"><a href="#百度编辑器-UEditor" class="headerlink" title="百度编辑器 UEditor"></a>百度编辑器 UEditor</h1><blockquote>
 <p>应用场景：<br>使用UEditor上传图片，文件等到七牛云服务器，<br><strong>结果：编辑器图片链接为七牛云链接</strong></p>
 </blockquote>
-<h3 id="sdk资源准备"><a href="#sdk资源准备" class="headerlink" title="sdk资源准备"></a>sdk资源准备</h3><ol>
+<h2 id="sdk资源准备"><a href="#sdk资源准备" class="headerlink" title="sdk资源准备"></a>sdk资源准备</h2><ol>
 <li>七牛云 phpSDK 重命名为qiniuyun</li>
 <li>UEditor [1.4.3.3 php] utf-8版 重命名为ueditor</li>
 </ol>
-<h3 id="集成到thinkphp3-2-3"><a href="#集成到thinkphp3-2-3" class="headerlink" title="集成到thinkphp3.2.3"></a>集成到thinkphp3.2.3</h3><p>因为<code>UEditor</code>已经帮我们写好了php代码，但后缀是.php的，这意味着在thinkphp中，这些文件属于外来的。那么这里就按照外来的文件对待。<br>直接将<code>UEditor</code>sdk和七牛云sdk一起复制到thinkphp3.2.3中的Public目录下面。</p>
+<h2 id="集成到thinkphp3-2-3"><a href="#集成到thinkphp3-2-3" class="headerlink" title="集成到thinkphp3.2.3"></a>集成到thinkphp3.2.3</h2><p>因为<code>UEditor</code>已经帮我们写好了php代码，但后缀是.php的，这意味着在thinkphp中，这些文件属于外来的。那么这里就按照外来的文件对待。<br>直接将<code>UEditor</code>sdk和七牛云sdk一起复制到thinkphp3.2.3中的Public目录下面。</p>
 <blockquote>
 <p>想放在别的目录也可以，但是这里不适合再用thinkphp的方法，请将思维转回到传统php来。所以，我才选择放在Pulick目录下面</p>
 </blockquote>
@@ -414,7 +414,7 @@ UEditor [1.4.3.3 php] utf-8版 重命名为ueditor
 </ul>
 </li>
 </ul>
-<h3 id="改造UEditor"><a href="#改造UEditor" class="headerlink" title="改造UEditor"></a>改造UEditor</h3><blockquote>
+<h2 id="改造UEditor"><a href="#改造UEditor" class="headerlink" title="改造UEditor"></a>改造UEditor</h2><blockquote>
 <p>这时的UEditor处理图片的方法是将图片上传到网址根目录下面。具体配置在<code>ueditor/php/config.json</code>文件中。</p>
 </blockquote>
 <p>下面将以上传图片为例：</p>
@@ -437,9 +437,9 @@ UEditor [1.4.3.3 php] utf-8版 重命名为ueditor
 </li>
 </ol>
 <blockquote>
-<p>####到这里改造结束。如果在form表单提交到后台时，还想提取编辑器传过来内容中的图片链接，请往下看</p>
+<p>到这里改造结束。如果在form表单提交到后台时，还想提取编辑器传过来内容中的图片链接，请往下看</p>
 </blockquote>
-<h3 id="提取编辑器中所有图片链接"><a href="#提取编辑器中所有图片链接" class="headerlink" title="提取编辑器中所有图片链接"></a>提取编辑器中所有图片链接</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$content = I(<span class="string">'post.editorValue'</span>);</div><div class="line">preg_match_all(<span class="string">'&lt;img.*?src="(.*?)"&gt;'</span>,ltgt($content),$match); <span class="comment">//ltgt()方法是将`&lt;`,`&gt;`等再转换回来</span></div><div class="line">$files = $match[<span class="number">1</span>];</div></pre></td></tr></table></figure>
+<h2 id="提取编辑器中所有图片链接"><a href="#提取编辑器中所有图片链接" class="headerlink" title="提取编辑器中所有图片链接"></a>提取编辑器中所有图片链接</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$content = I(<span class="string">'post.editorValue'</span>);</div><div class="line">preg_match_all(<span class="string">'&lt;img.*?src="(.*?)"&gt;'</span>,ltgt($content),$match); <span class="comment">//ltgt()方法是将`&lt;`,`&gt;`等再转换回来</span></div><div class="line">$files = $match[<span class="number">1</span>];</div></pre></td></tr></table></figure>
 <blockquote>
 <p><code>$match[1]</code>中即为编辑器中所有图片链接</p>
 </blockquote>
@@ -447,8 +447,8 @@ UEditor [1.4.3.3 php] utf-8版 重命名为ueditor
 <blockquote>
 <p><code>$urlKey</code>和<code>$match[1]</code>中的数据一一对应，文件名:文件地址</p>
 </blockquote>
-<h3 id="UEditor常用配置"><a href="#UEditor常用配置" class="headerlink" title="UEditor常用配置"></a>UEditor常用配置</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">,charset:<span class="string">"utf-8"</span>  <span class="comment">//针对getAllHtml方法，会在对应的head标签中增加该编码设置。</span></div><div class="line">,initialFrameHeight:<span class="number">500</span>  <span class="comment">//初始化编辑器高度,默认320</span></div><div class="line">,textarea:<span class="string">'editorValue'</span> <span class="comment">// 提交表单时，服务器获取编辑器提交内容的所用的参数，多实例时可以给容器name属性，会将name给定的值最为每个实例的键值，不用每次实例化的时候都设置这个值</span></div><div class="line">,initialContent:<span class="string">'欢迎使用ueditor!'</span>    <span class="comment">//初始化编辑器的内容,也可以通过textarea/script给值，看官网例子</span></div></pre></td></tr></table></figure>
-<h3 id="ltgt-方法"><a href="#ltgt-方法" class="headerlink" title="ltgt()方法"></a>ltgt()方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&amp;lt;转成&lt;,&amp;rt;转成&gt;,&amp;quot;转成"</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ltgt</span><span class="params">($str)</span></span>&#123;</div><div class="line">    $lt = str_replace(<span class="string">'&amp;lt;'</span>,<span class="string">'&lt;'</span>,$str);</div><div class="line">    $gt = str_replace(<span class="string">'&amp;gt;'</span>,<span class="string">'&gt;'</span>,$lt);</div><div class="line">    $quot = str_replace(<span class="string">'&amp;quot;'</span>,<span class="string">'"'</span>,$gt);</div><div class="line">    <span class="keyword">return</span> $quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="UEditor常用配置"><a href="#UEditor常用配置" class="headerlink" title="UEditor常用配置"></a>UEditor常用配置</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">,charset:<span class="string">"utf-8"</span>  <span class="comment">//针对getAllHtml方法，会在对应的head标签中增加该编码设置。</span></div><div class="line">,initialFrameHeight:<span class="number">500</span>  <span class="comment">//初始化编辑器高度,默认320</span></div><div class="line">,textarea:<span class="string">'editorValue'</span> <span class="comment">// 提交表单时，服务器获取编辑器提交内容的所用的参数，多实例时可以给容器name属性，会将name给定的值最为每个实例的键值，不用每次实例化的时候都设置这个值</span></div><div class="line">,initialContent:<span class="string">'欢迎使用ueditor!'</span>    <span class="comment">//初始化编辑器的内容,也可以通过textarea/script给值，看官网例子</span></div></pre></td></tr></table></figure>
+<h2 id="ltgt-方法"><a href="#ltgt-方法" class="headerlink" title="ltgt()方法"></a>ltgt()方法</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&amp;lt;转成&lt;,&amp;rt;转成&gt;,&amp;quot;转成"</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ltgt</span><span class="params">($str)</span></span>&#123;</div><div class="line">    $lt = str_replace(<span class="string">'&amp;lt;'</span>,<span class="string">'&lt;'</span>,$str);</div><div class="line">    $gt = str_replace(<span class="string">'&amp;gt;'</span>,<span class="string">'&gt;'</span>,$lt);</div><div class="line">    $quot = str_replace(<span class="string">'&amp;quot;'</span>,<span class="string">'"'</span>,$gt);</div><div class="line">    <span class="keyword">return</span> $quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -688,7 +688,7 @@ UEditor [1.4.3.3 php] utf-8版 重命名为ueditor
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#百度编辑器-UEditor"><span class="nav-number">1.</span> <span class="nav-text">百度编辑器 UEditor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sdk资源准备"><span class="nav-number">2.</span> <span class="nav-text">sdk资源准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成到thinkphp3-2-3"><span class="nav-number">3.</span> <span class="nav-text">集成到thinkphp3.2.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改造UEditor"><span class="nav-number">4.</span> <span class="nav-text">改造UEditor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取编辑器中所有图片链接"><span class="nav-number">5.</span> <span class="nav-text">提取编辑器中所有图片链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UEditor常用配置"><span class="nav-number">6.</span> <span class="nav-text">UEditor常用配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ltgt-方法"><span class="nav-number">7.</span> <span class="nav-text">ltgt()方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#百度编辑器-UEditor"><span class="nav-number">1.</span> <span class="nav-text">百度编辑器 UEditor</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sdk资源准备"><span class="nav-number">1.1.</span> <span class="nav-text">sdk资源准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成到thinkphp3-2-3"><span class="nav-number">1.2.</span> <span class="nav-text">集成到thinkphp3.2.3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改造UEditor"><span class="nav-number">1.3.</span> <span class="nav-text">改造UEditor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提取编辑器中所有图片链接"><span class="nav-number">1.4.</span> <span class="nav-text">提取编辑器中所有图片链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UEditor常用配置"><span class="nav-number">1.5.</span> <span class="nav-text">UEditor常用配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ltgt-方法"><span class="nav-number">1.6.</span> <span class="nav-text">ltgt()方法</span></a></li></ol></li></ol></div>
             
 
           </div>
