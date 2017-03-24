@@ -369,24 +369,47 @@
       
         
           
-            <h3 id="可用的时间戳"><a href="#可用的时间戳" class="headerlink" title="可用的时间戳"></a>可用的时间戳</h3><ol>
+            <h3 id="根据当前时间算出可用的时间戳间隔"><a href="#根据当前时间算出可用的时间戳间隔" class="headerlink" title="根据当前时间算出可用的时间戳间隔"></a>根据当前时间算出可用的时间戳间隔</h3><ol>
 <li><p>当月第一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, time()));</div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,date(<span class="string">'m'</span>),<span class="number">1</span>,date(<span class="string">'Y'</span>));</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, time())); <span class="comment">//2017-3-01 00:00:00</span></div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,date(<span class="string">'m'</span>),<span class="number">1</span>,date(<span class="string">'Y'</span>));</div></pre></td></tr></table></figure>
 </li>
 <li><p>当月最后一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, time()));</div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">23</span>,<span class="number">59</span>,<span class="number">59</span>,date(<span class="string">'m'</span>),date(<span class="string">'t'</span>),date(<span class="string">'Y'</span>));</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, time())); <span class="comment">//2017-3-31 00:00:00</span></div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">23</span>,<span class="number">59</span>,<span class="number">59</span>,date(<span class="string">'m'</span>),date(<span class="string">'t'</span>),date(<span class="string">'Y'</span>));</div></pre></td></tr></table></figure>
 </li>
 <li><p>前月第一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'-1 month'</span>)));</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'-1 month'</span>))); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>前月最后一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'-1 month'</span>)));</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'-1 month'</span>))); <span class="comment">//2017-2-28 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>后一月第一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>)));</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>))); <span class="comment">//2017-4-01 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>后一月最后一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>)));</div></pre></td></tr></table></figure></li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>))); <span class="comment">//2017-4-30 00:00:00</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="根据给定的时间戳算出可用的时间戳间隔"><a href="#根据给定的时间戳算出可用的时间戳间隔" class="headerlink" title="根据给定的时间戳算出可用的时间戳间隔"></a>根据给定的时间戳算出可用的时间戳间隔</h3><blockquote>
+<p><code>$input_timestamp = 1490320660; // 2017-03-24 01:57:40</code></p>
+</blockquote>
+<ol>
+<li><p>给定的月份第一天</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, $input_timestamp); <span class="comment">//2017-3-01 00:00:00</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>给定的月份最后一天</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, $input_timestamp); <span class="comment">//2017-3-31 00:00:00</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>给定的前月第一天</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(date(<span class="string">'Y-m-d'</span>,$input_timestamp).<span class="string">' - 1 month'</span>))); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>给定的前月最后一天</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(date(<span class="string">'Y-m-d'</span>,$input_timestamp).<span class="string">' - 1 month'</span>))); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>给定的后月第一天</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(date(<span class="string">'Y-m-d'</span>,$input_timestamp).<span class="string">' + 1 month'</span>))); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>给定的后月最后一天</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(date(<span class="string">'Y-m-d'</span>,$input_timestamp).<span class="string">' + 1 month'</span>))); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure></li>
 </ol>
 
           
@@ -1428,6 +1451,173 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://singi2016cn.github.io/2016/09/19/wechat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Singi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Singi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/19/wechat/" itemprop="url">
+                  phpmailer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-19T21:57:42+08:00">
+                2016-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/thinkphp/" itemprop="url" rel="index">
+                    <span itemprop="name">thinkphp</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/thinkphp/wechat/" itemprop="url" rel="index">
+                    <span itemprop="name">wechat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h1><h2 id="wechat-php-sdk"><a href="#wechat-php-sdk" class="headerlink" title="wechat-php-sdk"></a><a href="http://github.com/dodgepudding/wechat-php-sdk" target="_blank" rel="external">wechat-php-sdk</a></h2><h3 id="下载zip包，只需要wechat-class-php和demo-php"><a href="#下载zip包，只需要wechat-class-php和demo-php" class="headerlink" title="下载zip包，只需要wechat.class.php和demo.php"></a>下载zip包，只需要<code>wechat.class.php</code>和<code>demo.php</code></h3><h3 id="将wechat-class-php复制到ThinkPHP-Library-Org-Util-下，然后在控制器中如下引入"><a href="#将wechat-class-php复制到ThinkPHP-Library-Org-Util-下，然后在控制器中如下引入" class="headerlink" title="将wechat.class.php复制到ThinkPHP/Library/Org/Util/下，然后在控制器中如下引入"></a>将<code>wechat.class.php</code>复制到<code>ThinkPHP/Library/Org/Util/</code>下，然后在控制器中如下引入</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import(<span class="string">'Org.Util.wechat'</span>);<span class="comment">//进入</span></div><div class="line"></div><div class="line">$weObj = <span class="keyword">new</span> \Wechat($option);<span class="comment">//实例化，$option是微信的配置，在demo.php中有demo</span></div></pre></td></tr></table></figure>
+<p>###官方demo<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="string">"wechat.class.php"</span>;</div><div class="line">$options = <span class="keyword">array</span>(</div><div class="line"> <span class="string">'token'</span>=&gt;<span class="string">'tokenaccesskey'</span>, <span class="comment">//填写你设定的key</span></div><div class="line"> <span class="string">'encodingaeskey'</span>=&gt;<span class="string">'encodingaeskey'</span> <span class="comment">//填写加密用的EncodingAESKey，如接口为明文模式可忽略</span></div><div class="line"> );</div><div class="line">$weObj = <span class="keyword">new</span> Wechat($options);</div><div class="line">$weObj-&gt;valid();<span class="comment">//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败</span></div><div class="line">$type = $weObj-&gt;getRev()-&gt;getRevType();</div><div class="line"><span class="keyword">switch</span>($type) &#123;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_TEXT:</div><div class="line"> $weObj-&gt;text(<span class="string">"hello, I'm wechat"</span>)-&gt;reply();</div><div class="line"> <span class="keyword">exit</span>;</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_EVENT:</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_IMAGE:</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">default</span>:</div><div class="line"> $weObj-&gt;text(<span class="string">"help info"</span>)-&gt;reply();</div></pre></td></tr></table></figure></p>
+<h3 id="自己改进后demo"><a href="#自己改进后demo" class="headerlink" title="自己改进后demo"></a>自己改进后demo</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</div><div class="line">import(<span class="string">'Org.Util.Wechat'</span>);</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</div><div class="line">         $options = <span class="keyword">array</span>(</div><div class="line">         <span class="string">'appid'</span> =&gt; <span class="string">'wx51c8eacd17a190c0'</span>,<span class="comment">//微信appid</span></div><div class="line">         <span class="string">'appsecret'</span> =&gt; <span class="string">'f30185d7c8ff809ab44597d7c8ad8457'</span>,<span class="comment">//微信appsecret</span></div><div class="line">         <span class="string">'token'</span> =&gt; <span class="string">'81965224d145c658896fef654072a8a1'</span>, <span class="comment">//填写你设定的key</span></div><div class="line">         <span class="string">'encodingaeskey'</span> =&gt; <span class="string">'cdd96aa3071266d088ad44411066df87cd8bf993ada'</span> <span class="comment">//填写加密用的EncodingAESKey，如接口为明文模式可忽略</span></div><div class="line">    );</div><div class="line">    $weObj = <span class="keyword">new</span> \Wechat($options);</div><div class="line">    $weObj-&gt;valid();<span class="comment">//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败</span></div><div class="line">    $type = $weObj-&gt;getRev()-&gt;getRevType();</div><div class="line">    $openId = $weObj-&gt;getRevFrom();<span class="comment">//获取消息发送者</span></div><div class="line">    $content = $weObj-&gt;getRevContent();<span class="comment">//获取发送内容</span></div><div class="line">    $event = $weObj-&gt;getRevEvent();<span class="comment">//事件类型：$event['event'],类型关键字：$event['key']     </span></div><div class="line">    <span class="comment">//图文数据组织</span></div><div class="line">    $newsCourse = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最好的健身课'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'忍不住地想要上课啦！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    $newsNotice = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最新的公告'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'又有新公告了，进来看看吧，惊喜等着你！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    $newsAbout = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最棒的场馆'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'这个场馆绝对适合你！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    <span class="keyword">switch</span> ($type) &#123;         </div><div class="line">        <span class="keyword">case</span> \Wechat::EVENT_SUBSCRIBE:             </div><div class="line">            <span class="comment">//用户关注微信号时 TODO 没有记录，添加用户user_social_info     </span></div><div class="line">            <span class="keyword">break</span>;    </div><div class="line">        <span class="keyword">case</span> \Wechat::MSGTYPE_TEXT:             </div><div class="line">            <span class="comment">//处理用户输入         </span></div><div class="line">            <span class="keyword">if</span> ($content == <span class="string">'我的课程'</span>) $weObj-&gt;news($newsCourse)-&gt;reply(); </div><div class="line">            $weObj-&gt;text(<span class="string">"欢迎使用精微内容服务!"</span>)-&gt;reply();             </div><div class="line">            <span class="keyword">break</span>;         </div><div class="line">        <span class="keyword">case</span> \Wechat::MSGTYPE_EVENT:             </div><div class="line">            <span class="comment">//处理用户事件         </span></div><div class="line">            <span class="keyword">if</span> ($event[<span class="string">'event'</span>] == <span class="string">'CLICK'</span>) &#123;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'course'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsCourse)-&gt;reply();         </div><div class="line">                &#125;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'notice'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsNotice)-&gt;reply();             </div><div class="line">                &#125;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'about'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsAbout)-&gt;reply();         </div><div class="line">                &#125;     </div><div class="line">            &#125;         </div><div class="line">            <span class="keyword">break</span>;      </div><div class="line">    &#125;; </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://singi2016cn.github.io/2016/09/19/phpmailer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1557,173 +1747,6 @@
 <h4 id="注意-自动加载文件是引入PHPMailerAutoload-php，不是autoload-php"><a href="#注意-自动加载文件是引入PHPMailerAutoload-php，不是autoload-php" class="headerlink" title="注意:自动加载文件是引入PHPMailerAutoload.php，不是autoload.php"></a>注意:自动加载文件是引入PHPMailerAutoload.php，不是autoload.php</h4></blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">vendor(<span class="string">'phpmailer.PHPMailerAutoload'</span>);</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 发送邮件</div><div class="line"> * <span class="doctag">@param</span> $subject //邮件主题</div><div class="line"> * <span class="doctag">@param</span> $body //邮件内容</div><div class="line"> * <span class="doctag">@param</span> $to_mail //发送到邮箱地址</div><div class="line"> * <span class="doctag">@return</span> bool</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">send_mail</span><span class="params">($subject,$body,$to_mail)</span></span>&#123;</div><div class="line">    date_default_timezone_set(<span class="string">'PRC'</span>);<span class="comment">//设置时区</span></div><div class="line">    $mail-&gt;CharSet = <span class="string">'UTF-8'</span>; <span class="comment">//设置邮件的字符编码，这很重要，不然中文乱码</span></div><div class="line">    </div><div class="line">    $mail = <span class="keyword">new</span> \PHPMailer();</div><div class="line"><span class="comment">//  $mail-&gt;SMTPDebug = 3;                // 调试模式，有错误的情况下最好打开，便于查出错误</span></div><div class="line">    $mail-&gt;isSMTP();                       <span class="comment">// 使用 SMTP</span></div><div class="line">    $mail-&gt;Host = <span class="string">'smtp.qq.com'</span>;           <span class="comment">// 使用 QQ的 SMTP 服务器</span></div><div class="line">    $mail-&gt;SMTPAuth = <span class="keyword">true</span>;                <span class="comment">// 使用 SMTP 权鉴，必须</span></div><div class="line">    $mail-&gt;Username = <span class="string">'发送邮件地址'</span>;        <span class="comment">// SMTP username</span></div><div class="line">    $mail-&gt;Password = <span class="string">'发送邮件QQ授权码'</span>;    <span class="comment">// SMTP password,使用qq的话,是授权码,不是邮箱登录密码!!!</span></div><div class="line">    $mail-&gt;SMTPSecure = <span class="string">'ssl'</span>;             <span class="comment">// Enable TLS encryption, `ssl` also accepted 加密</span></div><div class="line">    $mail-&gt;Port = <span class="number">465</span>;                     <span class="comment">// TCP port to connect to 链接端口:465或587</span></div><div class="line"></div><div class="line">    $mail-&gt;setFrom(<span class="string">'服务器邮箱地址'</span>, <span class="string">'别名'</span>);   <span class="comment">//服务器邮箱地址，第二个参数是别名，从服务器邮箱发送到哪</span></div><div class="line">    $mail-&gt;addAddress($to_mail, <span class="string">'别名'</span>);     <span class="comment">// 接受邮箱地址,可以添加多个</span></div><div class="line"><span class="comment">//  $mail-&gt;addReplyTo('info@example.com', 'Information');</span></div><div class="line"><span class="comment">//  $mail-&gt;addCC('cc@example.com');</span></div><div class="line"><span class="comment">//  $mail-&gt;addBCC('bcc@example.com');</span></div><div class="line"></div><div class="line"><span class="comment">//  $mail-&gt;addAttachment('./admin.php');         // 添加附件，附件地址是服务器上的地址</span></div><div class="line"><span class="comment">//  $mail-&gt;addAttachment('./1464581020.jpg', 'new.jpg'); // 可以给附件设置别名，附件地址是服务器上的地址</span></div><div class="line">    $mail-&gt;isHTML(<span class="keyword">true</span>);                         <span class="comment">// 发送 HTML格式的内容</span></div><div class="line"></div><div class="line">    $mail-&gt;Subject = $subject;<span class="comment">//邮件主题</span></div><div class="line">    $mail-&gt;Body    = <span class="string">'&lt;p&gt;'</span>.$body.<span class="string">'&lt;/p&gt;'</span>;<span class="comment">//邮件内容</span></div><div class="line"><span class="comment">//  $mail-&gt;AltBody = 'This is the body in plain text for non-HTML mail clients'; //纯文本邮件内容</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!$mail-&gt;send()) &#123;</div><div class="line"><span class="comment">//        return $mail-&gt;ErrorInfo;//调试的时候返回错误信息，我这里测试成功了，就不返回了。</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="调用函数，发送邮件"><a href="#调用函数，发送邮件" class="headerlink" title="调用函数，发送邮件"></a>调用函数，发送邮件</h3><p>在控制器中直接调用<strong>send_mail($subject,$body,$to_mail)</strong>函数，就可以成功向指定的邮箱发送邮件了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://singi2016cn.github.io/2016/09/19/wechat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Singi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Singi">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/19/wechat/" itemprop="url">
-                  phpmailer
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-19T21:57:42+08:00">
-                2016-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/thinkphp/" itemprop="url" rel="index">
-                    <span itemprop="name">thinkphp</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/thinkphp/wechat/" itemprop="url" rel="index">
-                    <span itemprop="name">wechat</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h1><h2 id="wechat-php-sdk"><a href="#wechat-php-sdk" class="headerlink" title="wechat-php-sdk"></a><a href="http://github.com/dodgepudding/wechat-php-sdk" target="_blank" rel="external">wechat-php-sdk</a></h2><h3 id="下载zip包，只需要wechat-class-php和demo-php"><a href="#下载zip包，只需要wechat-class-php和demo-php" class="headerlink" title="下载zip包，只需要wechat.class.php和demo.php"></a>下载zip包，只需要<code>wechat.class.php</code>和<code>demo.php</code></h3><h3 id="将wechat-class-php复制到ThinkPHP-Library-Org-Util-下，然后在控制器中如下引入"><a href="#将wechat-class-php复制到ThinkPHP-Library-Org-Util-下，然后在控制器中如下引入" class="headerlink" title="将wechat.class.php复制到ThinkPHP/Library/Org/Util/下，然后在控制器中如下引入"></a>将<code>wechat.class.php</code>复制到<code>ThinkPHP/Library/Org/Util/</code>下，然后在控制器中如下引入</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import(<span class="string">'Org.Util.wechat'</span>);<span class="comment">//进入</span></div><div class="line"></div><div class="line">$weObj = <span class="keyword">new</span> \Wechat($option);<span class="comment">//实例化，$option是微信的配置，在demo.php中有demo</span></div></pre></td></tr></table></figure>
-<p>###官方demo<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="string">"wechat.class.php"</span>;</div><div class="line">$options = <span class="keyword">array</span>(</div><div class="line"> <span class="string">'token'</span>=&gt;<span class="string">'tokenaccesskey'</span>, <span class="comment">//填写你设定的key</span></div><div class="line"> <span class="string">'encodingaeskey'</span>=&gt;<span class="string">'encodingaeskey'</span> <span class="comment">//填写加密用的EncodingAESKey，如接口为明文模式可忽略</span></div><div class="line"> );</div><div class="line">$weObj = <span class="keyword">new</span> Wechat($options);</div><div class="line">$weObj-&gt;valid();<span class="comment">//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败</span></div><div class="line">$type = $weObj-&gt;getRev()-&gt;getRevType();</div><div class="line"><span class="keyword">switch</span>($type) &#123;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_TEXT:</div><div class="line"> $weObj-&gt;text(<span class="string">"hello, I'm wechat"</span>)-&gt;reply();</div><div class="line"> <span class="keyword">exit</span>;</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_EVENT:</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_IMAGE:</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">default</span>:</div><div class="line"> $weObj-&gt;text(<span class="string">"help info"</span>)-&gt;reply();</div></pre></td></tr></table></figure></p>
-<h3 id="自己改进后demo"><a href="#自己改进后demo" class="headerlink" title="自己改进后demo"></a>自己改进后demo</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</div><div class="line">import(<span class="string">'Org.Util.Wechat'</span>);</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</div><div class="line">         $options = <span class="keyword">array</span>(</div><div class="line">         <span class="string">'appid'</span> =&gt; <span class="string">'wx51c8eacd17a190c0'</span>,<span class="comment">//微信appid</span></div><div class="line">         <span class="string">'appsecret'</span> =&gt; <span class="string">'f30185d7c8ff809ab44597d7c8ad8457'</span>,<span class="comment">//微信appsecret</span></div><div class="line">         <span class="string">'token'</span> =&gt; <span class="string">'81965224d145c658896fef654072a8a1'</span>, <span class="comment">//填写你设定的key</span></div><div class="line">         <span class="string">'encodingaeskey'</span> =&gt; <span class="string">'cdd96aa3071266d088ad44411066df87cd8bf993ada'</span> <span class="comment">//填写加密用的EncodingAESKey，如接口为明文模式可忽略</span></div><div class="line">    );</div><div class="line">    $weObj = <span class="keyword">new</span> \Wechat($options);</div><div class="line">    $weObj-&gt;valid();<span class="comment">//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败</span></div><div class="line">    $type = $weObj-&gt;getRev()-&gt;getRevType();</div><div class="line">    $openId = $weObj-&gt;getRevFrom();<span class="comment">//获取消息发送者</span></div><div class="line">    $content = $weObj-&gt;getRevContent();<span class="comment">//获取发送内容</span></div><div class="line">    $event = $weObj-&gt;getRevEvent();<span class="comment">//事件类型：$event['event'],类型关键字：$event['key']     </span></div><div class="line">    <span class="comment">//图文数据组织</span></div><div class="line">    $newsCourse = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最好的健身课'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'忍不住地想要上课啦！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    $newsNotice = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最新的公告'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'又有新公告了，进来看看吧，惊喜等着你！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    $newsAbout = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最棒的场馆'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'这个场馆绝对适合你！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    <span class="keyword">switch</span> ($type) &#123;         </div><div class="line">        <span class="keyword">case</span> \Wechat::EVENT_SUBSCRIBE:             </div><div class="line">            <span class="comment">//用户关注微信号时 TODO 没有记录，添加用户user_social_info     </span></div><div class="line">            <span class="keyword">break</span>;    </div><div class="line">        <span class="keyword">case</span> \Wechat::MSGTYPE_TEXT:             </div><div class="line">            <span class="comment">//处理用户输入         </span></div><div class="line">            <span class="keyword">if</span> ($content == <span class="string">'我的课程'</span>) $weObj-&gt;news($newsCourse)-&gt;reply(); </div><div class="line">            $weObj-&gt;text(<span class="string">"欢迎使用精微内容服务!"</span>)-&gt;reply();             </div><div class="line">            <span class="keyword">break</span>;         </div><div class="line">        <span class="keyword">case</span> \Wechat::MSGTYPE_EVENT:             </div><div class="line">            <span class="comment">//处理用户事件         </span></div><div class="line">            <span class="keyword">if</span> ($event[<span class="string">'event'</span>] == <span class="string">'CLICK'</span>) &#123;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'course'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsCourse)-&gt;reply();         </div><div class="line">                &#125;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'notice'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsNotice)-&gt;reply();             </div><div class="line">                &#125;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'about'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsAbout)-&gt;reply();         </div><div class="line">                &#125;     </div><div class="line">            &#125;         </div><div class="line">            <span class="keyword">break</span>;      </div><div class="line">    &#125;; </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
