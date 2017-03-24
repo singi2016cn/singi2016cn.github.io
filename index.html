@@ -377,16 +377,16 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, time())); <span class="comment">//2017-3-31 00:00:00</span></div><div class="line"><span class="keyword">or</span></div><div class="line">mktime(<span class="number">23</span>,<span class="number">59</span>,<span class="number">59</span>,date(<span class="string">'m'</span>),date(<span class="string">'t'</span>),date(<span class="string">'Y'</span>));</div></pre></td></tr></table></figure>
 </li>
 <li><p>前月第一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'-1 month'</span>))); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>).<span class="string">' -1 month'</span>); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>前月最后一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'-1 month'</span>))); <span class="comment">//2017-2-28 00:00:00</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>).<span class="string">' -1 month'</span>); <span class="comment">//2017-2-28 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>后一月第一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>))); <span class="comment">//2017-4-01 00:00:00</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>).<span class="string">' +1 month'</span>); <span class="comment">//2017-4-01 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>后一月最后一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>))); <span class="comment">//2017-4-30 00:00:00</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>).<span class="string">' +1 month'</span>); <span class="comment">//2017-4-30 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="根据给定的时间戳算出可用的时间戳间隔"><a href="#根据给定的时间戳算出可用的时间戳间隔" class="headerlink" title="根据给定的时间戳算出可用的时间戳间隔"></a>根据给定的时间戳算出可用的时间戳间隔</h2><blockquote>
@@ -400,16 +400,16 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, $input_timestamp); <span class="comment">//2017-3-31 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>给定的前月第一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(date(<span class="string">'Y-m-d'</span>,$input_timestamp).<span class="string">' - 1 month'</span>))); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>,$input_timestamp).<span class="string">' -1 month'</span>); <span class="comment">//2017-2-01 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>给定的前月最后一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(date(<span class="string">'Y-m-d'</span>,$input_timestamp).<span class="string">' - 1 month'</span>))); <span class="comment">//2017-2-28 00:00:00</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>,$input_timestamp).<span class="string">' -1 month'</span>); <span class="comment">//2017-2-28 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>给定的后月第一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>, strtotime(date(<span class="string">'Y-m-d'</span>,$input_timestamp).<span class="string">' + 1 month'</span>))); <span class="comment">//2017-4-01 00:00:00</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-01'</span>,$input_timestamp).<span class="string">' +1 month'</span>); <span class="comment">//2017-4-01 00:00:00</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>给定的后月最后一天</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>, strtotime(date(<span class="string">'Y-m-d'</span>,$input_timestamp).<span class="string">' + 1 month'</span>))); <span class="comment">//2017-4-30 00:00:00</span></div></pre></td></tr></table></figure></li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">strtotime(date(<span class="string">'Y-m-t'</span>,$input_timestamp).<span class="string">' +1 month'</span>); <span class="comment">//2017-4-30 00:00:00</span></div></pre></td></tr></table></figure></li>
 </ol>
 
           
