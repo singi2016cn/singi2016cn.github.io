@@ -270,6 +270,336 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://singi2016cn.github.io/2016/09/19/wechat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Singi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Singi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/19/wechat/" itemprop="url">
+                  微信`sdk`
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-19T21:57:42+08:00">
+                2016-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/thinkphp/" itemprop="url" rel="index">
+                    <span itemprop="name">thinkphp</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/thinkphp/wechat/" itemprop="url" rel="index">
+                    <span itemprop="name">wechat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h1><blockquote>
+<p><a href="http://github.com/dodgepudding/wechat-php-sdk" target="_blank" rel="external">wechat-php-sdk</a></p>
+</blockquote>
+<h2 id="下载zip包，只需要wechat-class-php和demo-php"><a href="#下载zip包，只需要wechat-class-php和demo-php" class="headerlink" title="下载zip包，只需要wechat.class.php和demo.php"></a>下载zip包，只需要<code>wechat.class.php</code>和<code>demo.php</code></h2><h2 id="将wechat-class-php复制到ThinkPHP-Library-Org-Util-下，然后在控制器中如下引入"><a href="#将wechat-class-php复制到ThinkPHP-Library-Org-Util-下，然后在控制器中如下引入" class="headerlink" title="将wechat.class.php复制到ThinkPHP/Library/Org/Util/下，然后在控制器中如下引入"></a>将<code>wechat.class.php</code>复制到<code>ThinkPHP/Library/Org/Util/</code>下，然后在控制器中如下引入</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import(<span class="string">'Org.Util.wechat'</span>);<span class="comment">//进入</span></div><div class="line"></div><div class="line">$weObj = <span class="keyword">new</span> \Wechat($option);<span class="comment">//实例化，$option是微信的配置，在demo.php中有demo</span></div></pre></td></tr></table></figure>
+<h2 id="官方demo"><a href="#官方demo" class="headerlink" title="官方demo"></a>官方<code>demo</code></h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> <span class="string">"wechat.class.php"</span>;</div><div class="line">$options = <span class="keyword">array</span>(</div><div class="line"> <span class="string">'token'</span>=&gt;<span class="string">'tokenaccesskey'</span>, <span class="comment">//填写你设定的key</span></div><div class="line"> <span class="string">'encodingaeskey'</span>=&gt;<span class="string">'encodingaeskey'</span> <span class="comment">//填写加密用的EncodingAESKey，如接口为明文模式可忽略</span></div><div class="line"> );</div><div class="line">$weObj = <span class="keyword">new</span> Wechat($options);</div><div class="line">$weObj-&gt;valid();<span class="comment">//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败</span></div><div class="line">$type = $weObj-&gt;getRev()-&gt;getRevType();</div><div class="line"><span class="keyword">switch</span>($type) &#123;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_TEXT:</div><div class="line"> $weObj-&gt;text(<span class="string">"hello, I'm wechat"</span>)-&gt;reply();</div><div class="line"> <span class="keyword">exit</span>;</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_EVENT:</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">case</span> Wechat::MSGTYPE_IMAGE:</div><div class="line"> <span class="keyword">break</span>;</div><div class="line"> <span class="keyword">default</span>:</div><div class="line"> $weObj-&gt;text(<span class="string">"help info"</span>)-&gt;reply();</div></pre></td></tr></table></figure>
+<h2 id="自己改进后demo"><a href="#自己改进后demo" class="headerlink" title="自己改进后demo"></a>自己改进后<code>demo</code></h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</div><div class="line">import(<span class="string">'Org.Util.Wechat'</span>);</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</div><div class="line">         $options = <span class="keyword">array</span>(</div><div class="line">         <span class="string">'appid'</span> =&gt; <span class="string">'wx51c8eacd17a190c0'</span>,<span class="comment">//微信appid</span></div><div class="line">         <span class="string">'appsecret'</span> =&gt; <span class="string">'f30185d7c8ff809ab44597d7c8ad8457'</span>,<span class="comment">//微信appsecret</span></div><div class="line">         <span class="string">'token'</span> =&gt; <span class="string">'81965224d145c658896fef654072a8a1'</span>, <span class="comment">//填写你设定的key</span></div><div class="line">         <span class="string">'encodingaeskey'</span> =&gt; <span class="string">'cdd96aa3071266d088ad44411066df87cd8bf993ada'</span> <span class="comment">//填写加密用的EncodingAESKey，如接口为明文模式可忽略</span></div><div class="line">    );</div><div class="line">    $weObj = <span class="keyword">new</span> \Wechat($options);</div><div class="line">    $weObj-&gt;valid();<span class="comment">//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败</span></div><div class="line">    $type = $weObj-&gt;getRev()-&gt;getRevType();</div><div class="line">    $openId = $weObj-&gt;getRevFrom();<span class="comment">//获取消息发送者</span></div><div class="line">    $content = $weObj-&gt;getRevContent();<span class="comment">//获取发送内容</span></div><div class="line">    $event = $weObj-&gt;getRevEvent();<span class="comment">//事件类型：$event['event'],类型关键字：$event['key']     </span></div><div class="line">    <span class="comment">//图文数据组织</span></div><div class="line">    $newsCourse = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最好的健身课'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'忍不住地想要上课啦！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    $newsNotice = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最新的公告'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'又有新公告了，进来看看吧，惊喜等着你！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    $newsAbout = <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'0'</span> =&gt; <span class="keyword">array</span>(         </div><div class="line">        <span class="string">'Title'</span> =&gt; <span class="string">'最棒的场馆'</span>,         </div><div class="line">        <span class="string">'Description'</span> =&gt; <span class="string">'这个场馆绝对适合你！'</span>,         </div><div class="line">        <span class="string">'Url'</span> =&gt; <span class="string">'http://sass-wx.happyfit.studio/course/index?openId='</span> . $openId,         <span class="string">'PicUrl'</span> =&gt; <span class="string">'http://o7atl50ri.bkt.clouddn.com/1467773885.jpg?&amp;e=1467777485&amp;token=RYyqdPimpYxIUJl4KVcJ6APplN90d5CEpU1kZ-a6:KZTy43_pWbY0wC3WUopht0SzZms='</span>     </div><div class="line">    ));     </div><div class="line">    <span class="keyword">switch</span> ($type) &#123;         </div><div class="line">        <span class="keyword">case</span> \Wechat::EVENT_SUBSCRIBE:             </div><div class="line">            <span class="comment">//用户关注微信号时 TODO 没有记录，添加用户user_social_info     </span></div><div class="line">            <span class="keyword">break</span>;    </div><div class="line">        <span class="keyword">case</span> \Wechat::MSGTYPE_TEXT:             </div><div class="line">            <span class="comment">//处理用户输入         </span></div><div class="line">            <span class="keyword">if</span> ($content == <span class="string">'我的课程'</span>) $weObj-&gt;news($newsCourse)-&gt;reply(); </div><div class="line">            $weObj-&gt;text(<span class="string">"欢迎使用精微内容服务!"</span>)-&gt;reply();             </div><div class="line">            <span class="keyword">break</span>;         </div><div class="line">        <span class="keyword">case</span> \Wechat::MSGTYPE_EVENT:             </div><div class="line">            <span class="comment">//处理用户事件         </span></div><div class="line">            <span class="keyword">if</span> ($event[<span class="string">'event'</span>] == <span class="string">'CLICK'</span>) &#123;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'course'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsCourse)-&gt;reply();         </div><div class="line">                &#125;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'notice'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsNotice)-&gt;reply();             </div><div class="line">                &#125;         </div><div class="line">                <span class="keyword">if</span> ($event[<span class="string">'key'</span>] == <span class="string">'about'</span>) &#123;             </div><div class="line">                    $weObj-&gt;news($newsAbout)-&gt;reply();         </div><div class="line">                &#125;     </div><div class="line">            &#125;         </div><div class="line">            <span class="keyword">break</span>;      </div><div class="line">    &#125;; </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://singi2016cn.github.io/2016/09/07/RowDataPacket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Singi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Singi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/07/RowDataPacket/" itemprop="url">
+                  RowDataPacket
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-07T00:04:53+08:00">
+                2016-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nodejs/express/" itemprop="url" rel="index">
+                    <span itemprop="name">express</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="nodejs-express-mysql-操作返回的RowDataPacket处理。"><a href="#nodejs-express-mysql-操作返回的RowDataPacket处理。" class="headerlink" title="nodejs express mysql 操作返回的RowDataPacket处理。"></a>nodejs express mysql 操作返回的RowDataPacket处理。</h1><h2 id="1-可以在mysql的设置中返回json格式数据"><a href="#1-可以在mysql的设置中返回json格式数据" class="headerlink" title="1 可以在mysql的设置中返回json格式数据"></a>1 可以在mysql的设置中返回json格式数据</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      host            : '***',</div><div class="line">      user            : '***',</div><div class="line">      password        : '***',</div><div class="line">      database        : '***',</div><div class="line">      stringifyObjects: true, //返回Json格式数据,false则返回RowDataPacket对象</div><div class="line">      dateStrings     : true //日期格式化成 "Y-m-d H:i:s",false则为UTC标准时间</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h2 id="2-手动转换RowDataPacket对象，再返回渲染输出"><a href="#2-手动转换RowDataPacket对象，再返回渲染输出" class="headerlink" title="2 手动转换RowDataPacket对象，再返回渲染输出"></a>2 手动转换RowDataPacket对象，再返回渲染输出</h2><p>可以用JSON.stringify(RowDataPacket)转化为json字符串，然后在返回。</p>
+<h2 id="3-直接返回RowDataPacket对象，渲染输出"><a href="#3-直接返回RowDataPacket对象，渲染输出" class="headerlink" title="3 直接返回RowDataPacket对象，渲染输出"></a>3 直接返回RowDataPacket对象，渲染输出</h2><blockquote>
+<p>其实也是一个二维数组，渲染的时候forEach()遍历输出就可以了，这里演示的ejs渲染输出.</p>
+</blockquote>
+<p>后台返回数据<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.render(<span class="string">'index'</span>,&#123;<span class="attr">count</span>:count,<span class="attr">page</span>:page,<span class="attr">rows</span>:length,<span class="attr">data</span>:rows&#125;);</div></pre></td></tr></table></figure></p>
+<p>前台ejs渲染输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% data.forEach(function(v)&#123; %&gt;</div><div class="line">    &lt;tr&gt;</div><div class="line">        &lt;td&gt;&lt;%= v[&apos;id&apos;] %&gt;&lt;/td&gt; //可以用数组方式，适用于属性是这种变态的时候:&quot;count(id):4&quot;,用v[&apos;count(id)&apos;]获取</div><div class="line">        &lt;td&gt;&lt;%= v.name %&gt;&lt;/td&gt; //也可以用.方式</div><div class="line">        &lt;td&gt;&lt;%= v.skill %&gt;&lt;/td&gt;</div><div class="line">    &lt;/tr&gt;</div><div class="line">&lt;% &#125;) %&gt;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://singi2016cn.github.io/2016/09/05/hexoGithub/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -642,7 +972,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -664,7 +994,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
