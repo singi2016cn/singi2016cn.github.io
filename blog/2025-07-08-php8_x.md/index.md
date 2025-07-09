@@ -5,8 +5,6 @@ authors: [singi]
 tags: [php8, feature]
 ---
 
-# php8.x 常用新特性
-
 ## [php8.0](https://www.php.net/releases/8.0/zh.php)
 
 ### 命名参数
