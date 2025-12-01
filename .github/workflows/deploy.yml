@@ -4,8 +4,12 @@ on:
   push:
     branches:
       - main
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+    # 可根据需要添加 paths 过滤（仅当特定目录修改时触发）
+    # paths:
+    #   - 'docs/**'
+    #   - 'src/**'
+    #   - 'package.json'
+    #   - 'pnpm-lock.yaml'
 
 jobs:
   build:
@@ -14,36 +18,42 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
+          fetch-depth: 0  # Docusaurus 需要完整提交历史（如版本记录）
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: 'pnpm'  # 缓存 pnpm 依赖（替代原来的 npm 缓存）
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install pnpm
+        # 利用 Node.js 自带的 corepack 启用 pnpm（无需额外下载）
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate  # 锁定 pnpm 最新稳定版（可指定版本如 pnpm@9.0.0）
+
+      - name: Install dependencies (pnpm CI mode)
+        # 等价于 npm ci，严格遵循 pnpm-lock.yaml，不更新锁文件
+        run: pnpm install --frozen-lockfile
+
       - name: Build website
+        # 保持脚本不变（package.json 中的 build 脚本通用），也可改为 pnpm run build
         run: npm run build
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: build  # Docusaurus 构建输出目录（默认是 build，若改了配置需对应调整）
 
   deploy:
     name: Deploy to GitHub Pages
     needs: build
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write # to deploy to Pages
-      id-token: write # to verify the deployment originates from an appropriate source
-
-    # Deploy to the github-pages environment
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
