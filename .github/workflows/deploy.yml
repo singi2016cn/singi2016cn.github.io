@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - main
-    # 可根据需要添加 paths 过滤（仅当特定目录修改时触发）
-    # paths:
-    #   - 'docs/**'
-    #   - 'src/**'
-    #   - 'package.json'
-    #   - 'pnpm-lock.yaml'
 
 jobs:
   build:
@@ -18,32 +12,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Docusaurus 需要完整提交历史（如版本记录）
+          fetch-depth: 0  # Docusaurus 需要完整提交历史
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'  # 缓存 pnpm 依赖（替代原来的 npm 缓存）
+          cache: 'pnpm'  # 保持 pnpm 缓存配置
 
+      # 关键修改：用官方 Action 安装 pnpm（自动配置 PATH，避免找不到命令）
       - name: Install pnpm
-        # 利用 Node.js 自带的 corepack 启用 pnpm（无需额外下载）
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate  # 锁定 pnpm 最新稳定版（可指定版本如 pnpm@9.0.0）
+        uses: pnpm/action-setup@v4  # 官方 pnpm 安装 Action，稳定可靠
+        with:
+          version: latest  # 可指定具体版本（如 9.5.0），推荐 latest 或固定版本
+          run_install: false  # 不自动安装依赖，后续手动执行 CI 模式安装
 
       - name: Install dependencies (pnpm CI mode)
-        # 等价于 npm ci，严格遵循 pnpm-lock.yaml，不更新锁文件
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile  # 依然用 pnpm 的 CI 模式，等价于 npm ci
 
       - name: Build website
-        # 保持脚本不变（package.json 中的 build 脚本通用），也可改为 pnpm run build
-        run: npm run build
+        run: pnpm run build  # 统一用 pnpm 执行脚本（也可保留 npm run build，不影响）
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build  # Docusaurus 构建输出目录（默认是 build，若改了配置需对应调整）
+          path: build
 
   deploy:
     name: Deploy to GitHub Pages
