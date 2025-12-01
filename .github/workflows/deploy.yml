@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    # Review gh actions docs if you want to further define triggers, paths, etc
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 jobs:
   build:
@@ -12,26 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Docusaurus 需要完整提交历史
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'  # 保持 pnpm 缓存配置
+          cache: npm
 
-      # 关键修改：用官方 Action 安装 pnpm（自动配置 PATH，避免找不到命令）
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4  # 官方 pnpm 安装 Action，稳定可靠
-        with:
-          version: latest  # 可指定具体版本（如 9.5.0），推荐 latest 或固定版本
-          run_install: false  # 不自动安装依赖，后续手动执行 CI 模式安装
-
-      - name: Install dependencies (pnpm CI mode)
-        run: pnpm install --frozen-lockfile  # 依然用 pnpm 的 CI 模式，等价于 npm ci
-
+      - name: Install dependencies
+        run: npm ci
       - name: Build website
-        run: pnpm run build  # 统一用 pnpm 执行脚本（也可保留 npm run build，不影响）
+        run: npm run build
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
@@ -41,12 +33,17 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write
-      id-token: write
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages

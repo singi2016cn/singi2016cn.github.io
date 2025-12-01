@@ -17,3 +17,13 @@ laravel:
   label: 模型关联
   permalink: /模型关联
   description: 模型关联
+
+Lighthouse:
+  label: Lighthouse
+  permalink: /Lighthouse
+  description: Lighthouse
+
+Web性能优化:
+  label: Web性能优化
+  permalink: /Web性能优化
+  description: Web性能优化
