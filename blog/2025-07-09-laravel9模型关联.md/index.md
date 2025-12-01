@@ -51,6 +51,8 @@ class Avatar extends Model
 }
 ```
 
+<!-- truncate -->
+
 ## 一对多关联
 
 ### 表结构

@@ -18,6 +18,8 @@ php7
 htmlspecialchars($string, ENT_COMPAT | ENT_HTML401, 'UTF-8', false);
 ```
 
+<!-- truncate -->
+
 php8
 
 ```php
