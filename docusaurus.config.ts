@@ -114,7 +114,7 @@ const config: Config = {
           items: [
             {
               label: 'Bilibili',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              href: 'https://space.bilibili.com/13001763',
             },
           ],
         },
