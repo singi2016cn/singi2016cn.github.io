@@ -24,11 +24,13 @@ laravel new laravel12-demo
 composer run dev
 ```
 
+<!-- truncate -->
+
 > 本地开发支持前端代码热更新，非常好。
 
 访问 http://localhost:8000/ ,如下图：
 
-![首页](/static/img/laravel12-demo/index.png)
+![首页](/img/laravel12-demo/index.png)
 
 ## 使用`frankenphp`运行
 
