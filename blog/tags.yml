@@ -42,3 +42,8 @@ MailHog:
   label: MailHog
   permalink: /mailhog
   description: 基于网页和 API 的 SMTP 测试
+
+nano:
+  label: nano
+  permalink: /nano
+  description: 一个体积小巧而功能强大的文本编辑器
