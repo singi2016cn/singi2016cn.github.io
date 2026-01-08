@@ -21,7 +21,11 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          # 先同步 package.json 和 lock 文件，补上缺失的依赖记录
+          npm install
+          # 再执行纯净安装，保证依赖版本完全一致
+          npm ci
       - name: Build website
         run: npm run build
 
